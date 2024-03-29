@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/pages/login_page.dart';
 
 class OnBoardingWidget extends StatelessWidget {
   const OnBoardingWidget(
@@ -93,7 +94,9 @@ class OnBoardingWidget extends StatelessWidget {
                         ),
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, LogInPage.id);
+                        },
                         child: Text(
                           "Login",
                           style: TextStyle(

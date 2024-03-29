@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/pages/login_page.dart';
+import 'package:quiz_app/pages/sign_up_page.dart';
 
 class GetStartedPage extends StatelessWidget {
   const GetStartedPage({super.key});
@@ -46,7 +48,7 @@ class GetStartedPage extends StatelessWidget {
                       style: TextStyle(
                         shadows: [
                           Shadow(
-                            offset: Offset(0, 2), // Offset of the shadow
+                            offset: const Offset(0, 2), // Offset of the shadow
                             color: Colors.black.withOpacity(
                                 0.5), // Color of the shadow with some opacity
                             blurRadius: 4, // Amount of blur for the shadow
@@ -62,7 +64,9 @@ class GetStartedPage extends StatelessWidget {
                     ),
                     MaterialButton(
                       elevation: 6,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, LogInPage.id);
+                      },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
@@ -84,7 +88,9 @@ class GetStartedPage extends StatelessWidget {
                     ),
                     MaterialButton(
                       elevation: 6,
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, SignUpPage.id);
+                      },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
