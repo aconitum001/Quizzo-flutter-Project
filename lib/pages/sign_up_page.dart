@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/helper/show_toast.dart';
+import 'package:quiz_app/pages/cubits/homepage_cubit/homepage_cubit.dart';
 import 'package:quiz_app/pages/cubits/signup_cubit/signup_cubit.dart';
 import 'package:quiz_app/pages/home_page.dart';
 import 'package:quiz_app/widgets/ArrowButton.dart';
@@ -23,6 +24,7 @@ class SignUpPage extends StatelessWidget {
         if (state is SignupLoading) {
           isLoading = true;
         } else if (state is SignupSuccess) {
+          BlocProvider.of<HomepageCubit>(context).getUserDetails(id: email!);
           toastSuccess(
               message: "You have Created An Account!", context: context);
           isLoading = false;

@@ -1,12 +1,12 @@
 // ignore_for_file: use_key_in_widget_constructors, must_be_immutable
 
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/helper/show_toast.dart';
+import 'package:quiz_app/pages/cubits/homepage_cubit/homepage_cubit.dart';
+
 import 'package:quiz_app/pages/cubits/login_cubit/login_cubit.dart';
 import 'package:quiz_app/pages/home_page.dart';
 import 'package:quiz_app/pages/sign_up_page.dart';
@@ -26,6 +26,7 @@ class LogInPage extends StatelessWidget {
         if (state is LoginLoading) {
           isLoading = true;
         } else if (state is LoginSuccess) {
+          BlocProvider.of<HomepageCubit>(context).getUserDetails(id: email!);
           toastSuccess(
               message: "Welcome to Quiz Application!", context: context);
           isLoading = false;
