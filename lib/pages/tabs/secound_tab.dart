@@ -12,7 +12,7 @@ class SecoundTab extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: ListView.builder(
-        itemCount: data.entertainmentList.length,
+        itemCount: 4,
         itemBuilder: (context, index) => CatContainer(
           image: data.entertainmentList[index]["image"],
           title: data.entertainmentList[index]["name"],

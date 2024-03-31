@@ -11,7 +11,7 @@ class FirstTab extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: ListView.builder(
-        itemCount: data.otherList.length,
+        itemCount: 4,
         itemBuilder: (context, index) => CatContainer(
           image: data.otherList[index]["image"],
           title: data.otherList[index]["name"],

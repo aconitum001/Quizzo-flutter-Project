@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quiz_app/pages/categories_page.dart';
 import 'package:quiz_app/pages/cubits/homepage_cubit/homepage_cubit.dart';
 import 'package:quiz_app/pages/cubits/login_cubit/login_cubit.dart';
 import 'package:quiz_app/pages/cubits/signup_cubit/signup_cubit.dart';
 import 'package:quiz_app/pages/home_page.dart';
 import 'package:quiz_app/pages/intro_pages/get_started.dart';
+import 'package:quiz_app/pages/leader_board_page.dart';
 import 'package:quiz_app/pages/login_page.dart';
 import 'package:quiz_app/pages/onBoarding_page.dart';
+import 'package:quiz_app/pages/profile_page.dart';
 import 'package:quiz_app/pages/sign_up_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -37,7 +40,9 @@ class Quiz extends StatelessWidget {
         )
       ],
       child: MaterialApp(
-        theme: ThemeData(primarySwatch: Colors.deepPurple),
+        theme: ThemeData(
+          primarySwatch: Colors.deepPurple,
+        ),
         debugShowCheckedModeBanner: false,
         title: "Quiz App",
         routes: {
@@ -46,6 +51,9 @@ class Quiz extends StatelessWidget {
           GetStartedPage.id: (context) => const GetStartedPage(),
           LogInPage.id: (context) => LogInPage(),
           SignUpPage.id: (context) => SignUpPage(),
+          LeaderBoardPage.id: (context) => const LeaderBoardPage(),
+          ProfilePage.id: (context) => const ProfilePage(),
+          CategoriesPage.id: (context) => CategoriesPage(),
         },
         initialRoute: OnBoardingPage.id,
       ),
