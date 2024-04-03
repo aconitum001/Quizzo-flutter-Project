@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/helper/show_toast.dart';
@@ -53,20 +54,31 @@ class SignUpPage extends StatelessWidget {
                   children: [
                     const Padding(
                       padding:
-                          EdgeInsets.symmetric(horizontal: 24, vertical: 25),
+                          EdgeInsets.symmetric(horizontal: 24, vertical: 10),
                       child: Row(
                         children: [
                           ArrowButton(),
                         ],
                       ),
                     ),
+                    const SizedBox(
+                      height: 120,
+                    ),
                     Center(
                       child: Text(
-                        "Create\nAccount",
+                        "Sign Up",
                         style: TextStyle(
-                          fontSize: 45,
-                          fontWeight: FontWeight.w800,
+                          fontSize: 35,
                           fontFamily: kFontText,
+                          letterSpacing: 2,
+                          fontWeight: FontWeight.w300,
+                          shadows: [
+                            Shadow(
+                              offset: const Offset(2.0, 2.0),
+                              blurRadius: 3.0,
+                              color: Colors.grey.withOpacity(0.5),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -99,33 +111,49 @@ class SignUpPage extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 41, vertical: 32),
                       child: MaterialButton(
+                        elevation: 5,
+                        height: 50,
+                        minWidth: 320,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                         onPressed: () {
                           if (formkey.currentState!.validate()) {
                             BlocProvider.of<SignupCubit>(context).signUpUser(
-                                userName: userName!,
-                                email: email!,
-                                password: password!);
+                              email: email!,
+                              password: password,
+                              userName: userName!,
+                            );
                           }
                         },
                         color: kPrimaryColor,
-                        height: 70,
-                        child: Text(
-                          "Sign Up",
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontFamily: kFontText,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Sign Up",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: kFontText,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22,
+                              ),
+                            ),
+                            const SizedBox(width: 15),
+                            const Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                            ),
+                          ],
                         ),
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 40),
+                      padding: const EdgeInsets.only(bottom: 20),
                       child: Text(
                         "OR",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 22,
                           fontFamily: kFontText,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,

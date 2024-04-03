@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/pages/tabs/first_tab.dart';
 import 'package:quiz_app/pages/tabs/secound_tab.dart';
@@ -64,9 +65,10 @@ class HomePageWidget extends StatelessWidget {
                   child: Text(
                     "Hello, $username ",
                     style: const TextStyle(
-                        fontSize: 15,
-                        fontFamily: 'DM Sans',
-                        color: Colors.white),
+                      fontSize: 15,
+                      fontFamily: 'DM Sans',
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 const SizedBox(
@@ -97,7 +99,6 @@ class HomePageWidget extends StatelessWidget {
                       right: 12,
                       left: 12,
                       top: 10,
-                      bottom: 60,
                     ),
                     child: Container(
                       decoration: BoxDecoration(
@@ -116,6 +117,7 @@ class HomePageWidget extends StatelessWidget {
                             ),
                           ),
                           const TabBar(
+                            labelPadding: EdgeInsets.all(1),
                             dividerColor: Colors.transparent,
                             padding: EdgeInsets.symmetric(horizontal: 10),
                             labelStyle:

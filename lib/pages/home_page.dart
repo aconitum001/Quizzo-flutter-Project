@@ -17,6 +17,7 @@ class HomePage extends StatelessWidget {
   Map<String, dynamic>? data;
   bool isLoading = false;
   PersistentTabController controller = PersistentTabController();
+  bool hide = false;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,9 @@ class HomePage extends StatelessWidget {
           return const LoadingWidget();
         } else {
           return PersistentTabView(
+            resizeToAvoidBottomInset: true,
+            handleAndroidBackButtonPress: true,
+            hideNavigationBar: hide,
             navBarHeight: 60,
             controller: controller,
             tabs: [
@@ -43,7 +47,7 @@ class HomePage extends StatelessWidget {
                   username: username,
                 ),
                 item: ItemConfig(
-                  activeForegroundColor: const Color(0xff7143C7),
+                  activeForegroundColor: const Color(0xff613DA6),
                   inactiveIcon: const Icon(Icons.home_outlined),
                   icon: const Icon(Icons.home_rounded),
                   textStyle: const TextStyle(
@@ -54,9 +58,11 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               PersistentTabConfig(
-                screen: CategoriesPage(),
+                screen: CategoriesPage(
+                  hidenavbar: hide,
+                ),
                 item: ItemConfig(
-                  activeForegroundColor: const Color(0xff7143C7),
+                  activeForegroundColor: const Color(0xff613DA6),
                   icon: const Icon(Icons.grid_view_rounded),
                   inactiveIcon: const Icon(Icons.grid_view_outlined),
                   title: "Categories",
@@ -69,10 +75,32 @@ class HomePage extends StatelessWidget {
               PersistentTabConfig(
                 screen: const AddPage(),
                 item: ItemConfig(
-                  activeForegroundColor: const Color(0xff7143C7),
-                  icon: const Icon(
-                    Icons.add,
-                    color: Colors.white,
+                  icon: Container(
+                    width: 60,
+                    height: 60,
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(0, 3),
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                        ),
+                      ],
+                      shape: BoxShape.circle,
+                      gradient: const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color(0xff8251DE),
+                          Color(0xff462C78),
+                        ],
+                      ),
+                    ),
+                    child: const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ),
                   ),
                   textStyle: const TextStyle(
                     fontFamily: "Roboto",
@@ -86,7 +114,7 @@ class HomePage extends StatelessWidget {
                 item: ItemConfig(
                   icon: const Icon(Icons.emoji_events),
                   inactiveIcon: const Icon(Icons.emoji_events_outlined),
-                  activeForegroundColor: const Color(0xff7143C7),
+                  activeForegroundColor: const Color(0xff613DA6),
                   title: "LeaderBoard",
                   textStyle: const TextStyle(
                     fontFamily: "Roboto",
@@ -97,7 +125,7 @@ class HomePage extends StatelessWidget {
               PersistentTabConfig(
                 screen: const ProfilePage(),
                 item: ItemConfig(
-                  activeForegroundColor: const Color(0xff7143C7),
+                  activeForegroundColor: const Color(0xff613DA6),
                   icon: const Icon(Icons.person),
                   inactiveIcon: const Icon(Icons.person_outline_outlined),
                   title: "Profile",

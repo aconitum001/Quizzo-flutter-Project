@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/data.dart';
+import 'package:quiz_app/pages/cat_settings_page.dart';
 
 class CategoriesPage extends StatefulWidget {
-  CategoriesPage({super.key});
+  CategoriesPage({
+    super.key,
+    required this.hidenavbar,
+  });
 
   static String id = "/categoriesPage";
+  bool hidenavbar;
 
   @override
   State<CategoriesPage> createState() => _CategoriesPageState();
@@ -14,7 +20,7 @@ class CategoriesPage extends StatefulWidget {
 class _CategoriesPageState extends State<CategoriesPage> {
   final CategoriesData data = CategoriesData();
 
-  int selectedIndex = -1; // Track the index of the selected container
+  int selectedIndex = -1;
   int? catId;
 
   @override
@@ -32,49 +38,56 @@ class _CategoriesPageState extends State<CategoriesPage> {
       ),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 5),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(right: 12),
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(
-                        color: Colors.white, // Set underline color here
-                        width: 1.0, // Set underline thickness here
-                      ),
-                    ),
-                  ),
-                  child: InkWell(
-                    onTap: () {},
-                    child: const Text(
-                      "Next",
-                      style: TextStyle(
-                        fontSize: 25,
-                        color: Colors.white,
-                        fontFamily: "Oldenburg",
-                      ),
+          AppBar(
+            actions: [
+              Container(
+                margin: const EdgeInsets.only(right: 0),
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: Colors.white, // Set underline color here
+                      width: 1.0, // Set underline thickness here
                     ),
                   ),
                 ),
-              ],
+                child: InkWell(
+                  onTap: () {
+                    if (catId != null) {
+                      pushScreenWithoutNavBar(
+                        context,
+                        CatSettingsPage(catId: catId!),
+                      );
+                    }
+                  },
+                  child: const Text(
+                    "Next",
+                    style: TextStyle(
+                      fontSize: 25,
+                      color: Colors.white,
+                      fontFamily: "Oldenburg",
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              )
+            ],
+            backgroundColor: Colors.transparent,
+            leading: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+                size: 30,
+              ),
             ),
           ),
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(15),
               width: MediaQuery.of(context).size.width,
-              margin: const EdgeInsets.only(bottom: 70, right: 12, left: 12),
+              margin: const EdgeInsets.only(right: 12, left: 12, top: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(32),
                 color: Colors.white,
@@ -120,7 +133,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                         },
                         child: CustomContainer(
                           color: selectedIndex == index
-                              ? const Color(0xffFECAAC)
+                              ? const Color(0xff71DFC6)
                               : const Color(0xffE2D7F6),
                           image: data.catList[index]["image"],
                           title: data.catList[index]["name"],

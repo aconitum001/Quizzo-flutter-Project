@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/constants.dart';
 
 class CatContainer extends StatelessWidget {
   const CatContainer({
@@ -9,6 +8,14 @@ class CatContainer extends StatelessWidget {
     required this.questionsNumber,
   });
   final String image, title, questionsNumber;
+  final gradient = const LinearGradient(
+    colors: [
+      Color(0xff8251DE),
+      Color(0xff462C78),
+    ],
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +25,8 @@ class CatContainer extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         border: Border.all(
-          color: const Color(0xff643EAB),
+          color: const Color(0xff613DA6),
+          width: 1,
         ),
       ),
       child: Row(
@@ -35,12 +43,15 @@ class CatContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                title,
-                style: TextStyle(
-                  color: kPrimaryColor,
-                  fontSize: 15,
-                  fontFamily: "Oldenburg",
+              ShaderMask(
+                blendMode: BlendMode.srcIn,
+                shaderCallback: (rect) => gradient.createShader(rect),
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontFamily: "Oldenburg",
+                  ),
                 ),
               ),
               Row(
