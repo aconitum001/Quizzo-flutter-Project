@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/pages/cubits/question_cubit/question_cubit.dart';
+
+import 'package:quiz_app/pages/question_page.dart';
 import 'package:quiz_app/widgets/difficulty_container.dart';
+import 'package:quiz_app/widgets/number_container.dart';
 import 'package:quiz_app/widgets/typeContainer.dart';
 
 class CatSettingsPage extends StatefulWidget {
@@ -19,6 +25,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
   String? difficulty;
   String? type;
   int? questionNumbers;
+
   int difficultySelectedindex = -1;
   int typeSelectedIndex = -1;
   int questionIndex = -1;
@@ -54,7 +61,32 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                       ),
                     ),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () async {
+                        if (difficulty != null &&
+                            questionNumbers != null &&
+                            type != null) {
+                          print(widget.catId);
+                          print(type);
+                          print(difficulty);
+                          print(questionNumbers);
+                          await BlocProvider.of<QuestionCubit>(context).getData(
+                            catId: widget.catId.toString(),
+                            difficulty: difficulty!,
+                            type: type!,
+                            questionNumbers: questionNumbers.toString(),
+                          );
+                          pushScreen(
+                            context,
+                            screen: QuestionPage(
+                              type: type!,
+                              catId: widget.catId.toString(),
+                              questionNumber: questionNumbers.toString(),
+                              difficulty: difficulty!,
+                            ),
+                            withNavBar: false,
+                          );
+                        }
+                      },
                       child: const Text(
                         "Next",
                         style: TextStyle(
@@ -116,8 +148,13 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                                 : const Color(0xffE3D8F7),
                             onTap: () {
                               setState(() {
-                                difficultySelectedindex = 0;
-                                difficulty = "Hard";
+                                if (difficultySelectedindex == 0) {
+                                  difficultySelectedindex = -1;
+                                  difficulty = null;
+                                } else {
+                                  difficultySelectedindex = 0;
+                                  difficulty = "hard";
+                                }
                               });
                             },
                           ),
@@ -127,9 +164,15 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                                 ? const Color(0xff71DFC6)
                                 : const Color(0xffE3D8F7),
                             onTap: () {
-                              difficultySelectedindex = 1;
-                              difficulty = "medium";
-                              setState(() {});
+                              setState(() {
+                                if (difficultySelectedindex == 1) {
+                                  difficultySelectedindex = -1;
+                                  difficulty = null;
+                                } else {
+                                  difficultySelectedindex = 1;
+                                  difficulty = "medium";
+                                }
+                              });
                             },
                           ),
                           DifficultyContainer(
@@ -138,9 +181,15 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                                 ? const Color(0xff71DFC6)
                                 : const Color(0xffE3D8F7),
                             onTap: () {
-                              difficultySelectedindex = 2;
-                              difficulty = "easy";
-                              setState(() {});
+                              setState(() {
+                                if (difficultySelectedindex == 2) {
+                                  difficultySelectedindex = -1;
+                                  difficulty = null;
+                                } else {
+                                  difficultySelectedindex = 2;
+                                  difficulty = "easy";
+                                }
+                              });
                             },
                           ),
                         ],
@@ -188,8 +237,13 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                             : const Color(0xffE3D8F7),
                         onTap: () {
                           setState(() {
-                            typeSelectedIndex = 0;
-                            type = "boolean";
+                            if (typeSelectedIndex == 0) {
+                              typeSelectedIndex = -1;
+                              type = null;
+                            } else {
+                              typeSelectedIndex = 0;
+                              type = "boolean";
+                            }
                           });
                         },
                       ),
@@ -204,8 +258,13 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                         onTap: () {
                           setState(
                             () {
-                              typeSelectedIndex = 1;
-                              type = "multiple";
+                              if (typeSelectedIndex == 1) {
+                                typeSelectedIndex = -1;
+                                type = null;
+                              } else {
+                                typeSelectedIndex = 1;
+                                type = "multiple";
+                              }
                             },
                           );
                         },
@@ -242,8 +301,13 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                             title: "5 Questions",
                             onTap: () {
                               setState(() {
-                                questionIndex = 0;
-                                questionNumbers = 5;
+                                if (questionIndex == 0) {
+                                  questionIndex = -1;
+                                  questionNumbers = null;
+                                } else {
+                                  questionIndex = 0;
+                                  questionNumbers = 5;
+                                }
                               });
                             },
                             color: questionIndex == 0
@@ -254,8 +318,13 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                             title: "10 Questions",
                             onTap: () {
                               setState(() {
-                                questionIndex = 1;
-                                questionNumbers = 10;
+                                if (questionIndex == 1) {
+                                  questionIndex = -1;
+                                  questionNumbers = null;
+                                } else {
+                                  questionIndex = 1;
+                                  questionNumbers = 10;
+                                }
                               });
                             },
                             color: questionIndex == 1
@@ -266,8 +335,13 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                             title: "15 Questions",
                             onTap: () {
                               setState(() {
-                                questionIndex = 2;
-                                questionNumbers = 15;
+                                if (questionIndex == 2) {
+                                  questionIndex = -1;
+                                  questionNumbers = null;
+                                } else {
+                                  questionIndex = 2;
+                                  questionNumbers = 15;
+                                }
                               });
                             },
                             color: questionIndex == 2
@@ -277,55 +351,13 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                         ],
                       ),
                       const Spacer(
-                        flex: 1,
+                        flex: 2,
                       ),
                     ],
                   ),
                 ),
               )
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class NumberContainer extends StatelessWidget {
-  const NumberContainer({
-    super.key,
-    required this.title,
-    required this.color,
-    required this.onTap,
-  });
-  final String title;
-  final Color color;
-  final void Function()? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Material(
-        elevation: 5,
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(10),
-        child: Container(
-          width: 110,
-          height: 85,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: color,
-          ),
-          child: Center(
-            child: Text(
-              title,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 15,
-                fontFamily: "Oldenburg",
-              ),
-            ),
           ),
         ),
       ),

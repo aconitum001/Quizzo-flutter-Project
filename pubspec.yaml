@@ -30,6 +30,7 @@ environment:
 dependencies:
 
 
+  circular_countdown_timer: ^0.2.3
   cloud_firestore: ^4.15.8
   cupertino_icons: ^1.0.2
   firebase_auth: ^4.17.8
@@ -38,6 +39,7 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.5
   flutter_screenutil: ^5.9.0
+  http: ^1.2.0
   modal_progress_hud_nsn: ^0.5.1
   persistent_bottom_nav_bar_v2: ^5.1.0
   smooth_page_indicator: ^1.1.0
@@ -85,6 +87,7 @@ flutter:
         - asset: assets/fonts/Poppins/Poppins-Regular.ttf
         - asset: assets/fonts/Poppins/Poppins-Bold.ttf
         - asset: assets/fonts/Poppins/Poppins-Light.ttf
+        - asset: assets/fonts/Poppins/Poppins-Medium.ttf
     - family: DM Sans
       fonts:
         - asset: assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf
@@ -98,6 +101,7 @@ flutter:
       fonts:
         - asset: assets/fonts/Ubuntu/Ubuntu-Bold.ttf
         - asset: assets/fonts/Ubuntu/Ubuntu-Regular.ttf
+        - asset: assets/fonts/Ubuntu/Ubuntu-Medium.ttf
     - family: Roboto
       fonts:
         - asset: assets/fonts/Roboto/Roboto-Bold.ttf

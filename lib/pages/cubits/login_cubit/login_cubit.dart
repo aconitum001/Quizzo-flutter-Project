@@ -22,4 +22,11 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginFailure(errMessage: e.toString()));
     }
   }
+
+  @override
+  void onChange(Change<LoginState> change) {
+    // TODO: implement onChange
+    super.onChange(change);
+    print(change);
+  }
 }

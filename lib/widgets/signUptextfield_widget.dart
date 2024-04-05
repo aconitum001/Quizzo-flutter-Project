@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, file_names
 
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
@@ -27,6 +27,7 @@ class SignUpTextField extends StatelessWidget {
               if (value!.isEmpty) {
                 return "This field is required";
               }
+              return null;
             },
             obscureText: obscure,
             style: TextStyle(
