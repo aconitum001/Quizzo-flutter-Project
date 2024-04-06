@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
 
 class ResponseContainer extends StatelessWidget {
-  const ResponseContainer({
-    super.key,
-    required this.response,
-    required this.order,
-  });
+  const ResponseContainer(
+      {super.key,
+      required this.response,
+      required this.order,
+      required this.color});
   final String order;
   final String response;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,10 @@ class ResponseContainer extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14),
         color: const Color(0xffC7A8FC),
+        border: Border.all(
+          color: color,
+          width: 2,
+        ),
       ),
       child: Row(
         children: [

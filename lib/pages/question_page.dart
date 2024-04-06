@@ -9,7 +9,7 @@ import 'package:quiz_app/widgets/question_indicator.dart';
 import 'package:quiz_app/widgets/response_container.dart';
 
 class QuestionPage extends StatefulWidget {
-  QuestionPage({
+  const QuestionPage({
     super.key,
     required this.catId,
     required this.difficulty,
@@ -28,6 +28,7 @@ class _QuestionPageState extends State<QuestionPage> {
   final CountDownController controller = CountDownController();
   List<Question> questions = [];
   int questionSelectedIndex = 0;
+  int selectedResponse = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +81,19 @@ class QuestionUi extends StatefulWidget {
 
 class _QuestionUiState extends State<QuestionUi> {
   int questionSelectedIndex = 0;
+  int responseSelectedIndex = -1;
+  String? playerResponse;
+  void nextQuestion(List<dynamic> answers) {
+    if (questionSelectedIndex < widget.questionsNumber - 1) {
+      answers.shuffle();
+      setState(() {
+        questionSelectedIndex++;
+        widget.controller.start();
+        responseSelectedIndex = -1;
+        playerResponse = null;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +102,6 @@ class _QuestionUiState extends State<QuestionUi> {
     String correctAnswer =
         widget.questions[questionSelectedIndex].correctAnswer;
     List<dynamic> answers = [...wrongAnswers, correctAnswer];
-    answers.shuffle();
     print(widget.questions);
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -106,12 +119,7 @@ class _QuestionUiState extends State<QuestionUi> {
             ),
             child: InkWell(
               onTap: () {
-                if (questionSelectedIndex < widget.questionsNumber - 1) {
-                  setState(() {
-                    questionSelectedIndex++;
-                    widget.controller.start();
-                  });
-                }
+                nextQuestion(answers);
               },
               child: const Text(
                 "Next",
@@ -162,8 +170,11 @@ class _QuestionUiState extends State<QuestionUi> {
                       child: Column(
                         children: [
                           Center(
-                            child:
-                                CountDownTimer(controller: widget.controller),
+                            child: CountDownTimer(
+                              controller: widget.controller,
+                              nextQuestion: nextQuestion,
+                              answers: answers,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 22),
@@ -225,21 +236,93 @@ class _QuestionUiState extends State<QuestionUi> {
             const SizedBox(
               height: 30,
             ),
-            ResponseContainer(
-              response: answers[0],
-              order: "A",
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  if (responseSelectedIndex == 0) {
+                    // Deselect the currently selected response
+                    responseSelectedIndex = -1;
+                    playerResponse = null;
+                  } else {
+                    // Select the tapped response
+                    responseSelectedIndex = 0;
+                    playerResponse = answers[0];
+                  }
+                });
+              },
+              child: ResponseContainer(
+                response: answers[0],
+                order: "A",
+                color: responseSelectedIndex == 0
+                    ? const Color(0xff6808C7)
+                    : Colors.transparent,
+              ),
             ),
-            ResponseContainer(
-              response: answers[1],
-              order: "B",
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  if (responseSelectedIndex == 1) {
+                    // Deselect the currently selected response
+                    responseSelectedIndex = -1;
+                    playerResponse = null;
+                  } else {
+                    // Select the tapped response
+                    responseSelectedIndex = 1;
+                    playerResponse = answers[1];
+                  }
+                });
+              },
+              child: ResponseContainer(
+                response: answers[1],
+                order: "B",
+                color: responseSelectedIndex == 1
+                    ? const Color(0xff6808C7)
+                    : Colors.transparent,
+              ),
             ),
-            ResponseContainer(
-              response: answers[2],
-              order: "C",
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  if (responseSelectedIndex == 2) {
+                    // Deselect the currently selected response
+                    responseSelectedIndex = -1;
+                    playerResponse = null;
+                  } else {
+                    // Select the tapped response
+                    responseSelectedIndex = 2;
+                    playerResponse = answers[2];
+                  }
+                });
+              },
+              child: ResponseContainer(
+                response: answers[2],
+                order: "C",
+                color: responseSelectedIndex == 2
+                    ? const Color(0xff6808C7)
+                    : Colors.transparent,
+              ),
             ),
-            ResponseContainer(
-              response: answers[3],
-              order: "D",
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  if (responseSelectedIndex == 3) {
+                    // Deselect the currently selected response
+                    responseSelectedIndex = -1;
+                    playerResponse = null;
+                  } else {
+                    // Select the tapped response
+                    responseSelectedIndex = 3;
+                    playerResponse = answers[3];
+                  }
+                });
+              },
+              child: ResponseContainer(
+                response: answers[3],
+                order: "D",
+                color: responseSelectedIndex == 3
+                    ? const Color(0xff6808C7)
+                    : Colors.transparent,
+              ),
             ),
             const SizedBox(
               height: 10,
