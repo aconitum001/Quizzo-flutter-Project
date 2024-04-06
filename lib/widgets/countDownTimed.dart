@@ -31,7 +31,6 @@ class CountDownTimer extends StatelessWidget {
         backgroundColor: Colors.white,
         fillColor: Colors.white,
         ringColor: const Color(0xffA76AE4),
-        autoStart: false,
         isReverse: true,
       ),
     );

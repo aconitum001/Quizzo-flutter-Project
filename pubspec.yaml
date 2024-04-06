@@ -28,8 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-
-
+  bloc: ^8.1.4
   circular_countdown_timer: ^0.2.3
   cloud_firestore: ^4.15.8
   cupertino_icons: ^1.0.2
@@ -45,14 +44,7 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   top_snackbar_flutter: ^3.1.0
 
-
 dev_dependencies:
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^3.0.2
   flutter_test:
     sdk: flutter
@@ -108,6 +100,5 @@ flutter:
     - family: Trocchi
       fonts:
         - asset: assets/fonts/Trocchi/Trocchi-Regular.ttf
-
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

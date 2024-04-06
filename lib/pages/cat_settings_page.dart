@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:quiz_app/constants.dart';
-import 'package:quiz_app/pages/cubits/question_cubit/question_cubit.dart';
 
 import 'package:quiz_app/pages/question_page.dart';
 import 'package:quiz_app/widgets/difficulty_container.dart';
@@ -61,20 +60,10 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                       ),
                     ),
                     child: InkWell(
-                      onTap: () async {
+                      onTap: () {
                         if (difficulty != null &&
                             questionNumbers != null &&
                             type != null) {
-                          print(widget.catId);
-                          print(type);
-                          print(difficulty);
-                          print(questionNumbers);
-                          await BlocProvider.of<QuestionCubit>(context).getData(
-                            catId: widget.catId.toString(),
-                            difficulty: difficulty!,
-                            type: type!,
-                            questionNumbers: questionNumbers.toString(),
-                          );
                           pushScreen(
                             context,
                             screen: QuestionPage(

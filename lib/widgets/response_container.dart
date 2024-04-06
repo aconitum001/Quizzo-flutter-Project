@@ -14,9 +14,8 @@ class ResponseContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 17),
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 23),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
       width: double.infinity,
-      height: 55,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14),
         color: const Color(0xffC7A8FC),
@@ -43,15 +42,17 @@ class ResponseContainer extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            width: 20,
+            width: 15,
           ),
-          Text(
-            response,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 15,
-              fontFamily: "Poppins",
-              fontWeight: FontWeight.w500,
+          Expanded(
+            child: Text(
+              response,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+                fontFamily: "Poppins",
+                fontWeight: FontWeight.w500,
+              ),
             ),
           )
         ],
