@@ -5,13 +5,14 @@ class CountDownTimer extends StatelessWidget {
   const CountDownTimer({
     super.key,
     required this.controller,
-    required this.nextQuestion,
-    required this.answers,
+    required this.questionSelectedIndex,
+    required this.onComplete,
   });
 
+  final int questionSelectedIndex;
   final CountDownController controller;
-  final void Function(List<dynamic>)? nextQuestion;
-  final List<dynamic> answers;
+
+  final void Function()? onComplete;
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +37,7 @@ class CountDownTimer extends StatelessWidget {
         fillColor: Colors.white,
         ringColor: const Color(0xffA76AE4),
         isReverse: true,
-        onComplete: () {
-          nextQuestion!(answers);
-        },
+        onComplete: onComplete,
       ),
     );
   }

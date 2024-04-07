@@ -1,11 +1,14 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/models/question.dart';
+import 'package:quiz_app/pages/results_page.dart';
 import 'package:quiz_app/services/get_questions.dart';
 import 'package:quiz_app/widgets/countDownTimed.dart';
 import 'package:quiz_app/widgets/loading_widget.dart';
 import 'package:quiz_app/widgets/question_indicator.dart';
+import 'package:quiz_app/widgets/responnse_widget.dart';
 import 'package:quiz_app/widgets/response_container.dart';
 
 class QuestionPage extends StatefulWidget {
@@ -26,8 +29,9 @@ class QuestionPage extends StatefulWidget {
 
 class _QuestionPageState extends State<QuestionPage> {
   final CountDownController controller = CountDownController();
+
   List<Question> questions = [];
-  int questionSelectedIndex = 0;
+
   int selectedResponse = -1;
 
   @override
@@ -80,18 +84,29 @@ class QuestionUi extends StatefulWidget {
 }
 
 class _QuestionUiState extends State<QuestionUi> {
+  List<String> playerResponses = [];
   int questionSelectedIndex = 0;
   int responseSelectedIndex = -1;
   String? playerResponse;
-  void nextQuestion(List<dynamic> answers) {
-    if (questionSelectedIndex < widget.questionsNumber - 1) {
-      answers.shuffle();
+  void nextQuestion(List<dynamic> answers, String? response) {
+    if (questionSelectedIndex < widget.questionsNumber) {
       setState(() {
+        checkPlayerResponse(response);
         questionSelectedIndex++;
         widget.controller.start();
         responseSelectedIndex = -1;
         playerResponse = null;
       });
+    }
+  }
+
+  void checkPlayerResponse(String? response) {
+    if (response == widget.questions[questionSelectedIndex].correctAnswer) {
+      playerResponses.insert(questionSelectedIndex, "true");
+    } else if (response == null) {
+      playerResponses.insert(questionSelectedIndex, "null");
+    } else {
+      playerResponses.insert(questionSelectedIndex, "false");
     }
   }
 
@@ -102,7 +117,11 @@ class _QuestionUiState extends State<QuestionUi> {
     String correctAnswer =
         widget.questions[questionSelectedIndex].correctAnswer;
     List<dynamic> answers = [...wrongAnswers, correctAnswer];
-    print(widget.questions);
+
+    if (questionSelectedIndex != widget.questionsNumber - 1) {
+      answers.shuffle();
+    }
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
@@ -118,12 +137,16 @@ class _QuestionUiState extends State<QuestionUi> {
               ),
             ),
             child: InkWell(
-              onTap: () {
-                nextQuestion(answers);
-              },
-              child: const Text(
-                "Next",
-                style: TextStyle(
+              onTap: questionSelectedIndex == widget.questionsNumber - 1
+                  ? null
+                  : () {
+                      nextQuestion(answers, playerResponse);
+                    },
+              child: Text(
+                questionSelectedIndex == widget.questionsNumber - 1
+                    ? "Done"
+                    : "Next",
+                style: const TextStyle(
                   fontSize: 25,
                   color: Colors.white,
                   fontFamily: "Oldenburg",
@@ -172,8 +195,19 @@ class _QuestionUiState extends State<QuestionUi> {
                           Center(
                             child: CountDownTimer(
                               controller: widget.controller,
-                              nextQuestion: nextQuestion,
-                              answers: answers,
+                              questionSelectedIndex: questionSelectedIndex,
+                              onComplete: () {
+                                if (questionSelectedIndex ==
+                                    widget.questionsNumber - 1) {
+                                  checkPlayerResponse(playerResponse);
+                                  print(playerResponses);
+                                  pushScreen(context,
+                                      screen: const ResultPage(),
+                                      withNavBar: false);
+                                } else {
+                                  nextQuestion(answers, playerResponse);
+                                }
+                              },
                             ),
                           ),
                           Padding(
@@ -233,99 +267,18 @@ class _QuestionUiState extends State<QuestionUi> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 30,
+            const Spacer(
+              flex: 1,
             ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  if (responseSelectedIndex == 0) {
-                    // Deselect the currently selected response
-                    responseSelectedIndex = -1;
-                    playerResponse = null;
-                  } else {
-                    // Select the tapped response
-                    responseSelectedIndex = 0;
-                    playerResponse = answers[0];
-                  }
-                });
+            ResponseWidget(
+              responseSelectedIndex: responseSelectedIndex,
+              answers: answers,
+              onResponseSelected: (response) {
+                playerResponse = response;
               },
-              child: ResponseContainer(
-                response: answers[0],
-                order: "A",
-                color: responseSelectedIndex == 0
-                    ? const Color(0xff6808C7)
-                    : Colors.transparent,
-              ),
             ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  if (responseSelectedIndex == 1) {
-                    // Deselect the currently selected response
-                    responseSelectedIndex = -1;
-                    playerResponse = null;
-                  } else {
-                    // Select the tapped response
-                    responseSelectedIndex = 1;
-                    playerResponse = answers[1];
-                  }
-                });
-              },
-              child: ResponseContainer(
-                response: answers[1],
-                order: "B",
-                color: responseSelectedIndex == 1
-                    ? const Color(0xff6808C7)
-                    : Colors.transparent,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  if (responseSelectedIndex == 2) {
-                    // Deselect the currently selected response
-                    responseSelectedIndex = -1;
-                    playerResponse = null;
-                  } else {
-                    // Select the tapped response
-                    responseSelectedIndex = 2;
-                    playerResponse = answers[2];
-                  }
-                });
-              },
-              child: ResponseContainer(
-                response: answers[2],
-                order: "C",
-                color: responseSelectedIndex == 2
-                    ? const Color(0xff6808C7)
-                    : Colors.transparent,
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  if (responseSelectedIndex == 3) {
-                    // Deselect the currently selected response
-                    responseSelectedIndex = -1;
-                    playerResponse = null;
-                  } else {
-                    // Select the tapped response
-                    responseSelectedIndex = 3;
-                    playerResponse = answers[3];
-                  }
-                });
-              },
-              child: ResponseContainer(
-                response: answers[3],
-                order: "D",
-                color: responseSelectedIndex == 3
-                    ? const Color(0xff6808C7)
-                    : Colors.transparent,
-              ),
-            ),
-            const SizedBox(
-              height: 10,
+            const Spacer(
+              flex: 1,
             ),
             MaterialButton(
               onPressed: () async {},
@@ -334,34 +287,38 @@ class _QuestionUiState extends State<QuestionUi> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5),
               ),
-              height: 50,
+              height: 45,
               child: const Center(
                 child: Text(
                   "Submit Quiz",
                   style: TextStyle(
                     color: Colors.white,
                     fontFamily: "Ubuntu",
-                    fontSize: 16,
+                    fontSize: 15,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
               ),
             ),
             const SizedBox(
-              height: 10,
+              height: 8,
             ),
             InkWell(
               onTap: () {},
               child: const Text(
                 "Exit",
                 style: TextStyle(
-                  fontSize: 16,
+                  fontSize: 15,
                   fontFamily: "Ubuntu",
                   fontWeight: FontWeight.w500,
                   color: Color(0xffA76AE4),
                 ),
+                textAlign: TextAlign.center,
               ),
-            )
+            ),
+            const Spacer(
+              flex: 2,
+            ),
           ],
         ),
       ),

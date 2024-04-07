@@ -14,8 +14,8 @@ class ResponseContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 17),
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14),
