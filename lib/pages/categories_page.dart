@@ -135,7 +135,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                         },
                         child: CustomContainer(
                           color: selectedIndex == index
-                              ? const Color(0xff71DFC6)
+                              ? const Color(0xffC7A8FC)
                               : const Color(0xffE2D7F6),
                           image: data.catList[index]["image"],
                           title: data.catList[index]["name"],

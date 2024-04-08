@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/widgets/response_container.dart';
 
 // ignore: must_be_immutable
-class ResponseWidget extends StatefulWidget {
-  ResponseWidget({
+class MultipleResponseWidget extends StatefulWidget {
+  MultipleResponseWidget({
     super.key,
     required this.responseSelectedIndex,
     required this.answers,
@@ -15,10 +15,10 @@ class ResponseWidget extends StatefulWidget {
   final Function(String?) onResponseSelected;
 
   @override
-  State<ResponseWidget> createState() => _ResponseWidgetState();
+  State<MultipleResponseWidget> createState() => _MultipleResponseWidgetState();
 }
 
-class _ResponseWidgetState extends State<ResponseWidget> {
+class _MultipleResponseWidgetState extends State<MultipleResponseWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -5,11 +5,11 @@ import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/pages/results_page.dart';
 import 'package:quiz_app/services/get_questions.dart';
+import 'package:quiz_app/widgets/boolean_response_widget.dart';
 import 'package:quiz_app/widgets/countDownTimed.dart';
 import 'package:quiz_app/widgets/loading_widget.dart';
 import 'package:quiz_app/widgets/question_indicator.dart';
-import 'package:quiz_app/widgets/responnse_widget.dart';
-import 'package:quiz_app/widgets/response_container.dart';
+import 'package:quiz_app/widgets/multiple_response_widget.dart';
 
 class QuestionPage extends StatefulWidget {
   const QuestionPage({
@@ -54,11 +54,14 @@ class _QuestionPageState extends State<QuestionPage> {
           } else if (snapshot.hasData) {
             questions = snapshot.data!;
 
-            return QuestionUi(
-              controller: controller,
-              questions: questions,
-              questionsNumber: int.parse(widget.questionNumber),
-            );
+            return questions.isNotEmpty
+                ? QuestionUi(
+                    controller: controller,
+                    questions: questions,
+                    questionsNumber: int.parse(widget.questionNumber),
+                    type: widget.type,
+                  )
+                : Text("there is no data");
           } else {
             return Text(snapshot.error.toString());
           }
@@ -74,11 +77,13 @@ class QuestionUi extends StatefulWidget {
     required this.controller,
     required this.questions,
     required this.questionsNumber,
+    required this.type,
   });
 
   final CountDownController controller;
   final List<Question> questions;
   final int questionsNumber;
+  final String type;
   @override
   State<QuestionUi> createState() => _QuestionUiState();
 }
@@ -116,8 +121,13 @@ class _QuestionUiState extends State<QuestionUi> {
         widget.questions[questionSelectedIndex].incorrectAnswers;
     String correctAnswer =
         widget.questions[questionSelectedIndex].correctAnswer;
+
     List<dynamic> answers = [...wrongAnswers, correctAnswer];
 
+    String question = widget.questions[questionSelectedIndex].question
+        .replaceAll("&#039;", "'")
+        .replaceAll("&quot;", '"')
+        .replaceAll("&amp;", "&");
     if (questionSelectedIndex != widget.questionsNumber - 1) {
       answers.shuffle();
     }
@@ -200,9 +210,10 @@ class _QuestionUiState extends State<QuestionUi> {
                                 if (questionSelectedIndex ==
                                     widget.questionsNumber - 1) {
                                   checkPlayerResponse(playerResponse);
-                                  print(playerResponses);
                                   pushScreen(context,
-                                      screen: const ResultPage(),
+                                      screen: ResultPage(
+                                        playerResults: playerResponses,
+                                      ),
                                       withNavBar: false);
                                 } else {
                                   nextQuestion(answers, playerResponse);
@@ -253,7 +264,7 @@ class _QuestionUiState extends State<QuestionUi> {
                             height: 8,
                           ),
                           Text(
-                            widget.questions[questionSelectedIndex].question,
+                            question,
                             style: const TextStyle(
                               fontSize: 16,
                               fontFamily: "Poppins",
@@ -270,19 +281,40 @@ class _QuestionUiState extends State<QuestionUi> {
             const Spacer(
               flex: 1,
             ),
-            ResponseWidget(
-              responseSelectedIndex: responseSelectedIndex,
-              answers: answers,
-              onResponseSelected: (response) {
-                playerResponse = response;
-              },
-            ),
+            widget.type == "boolean"
+                ? BooleanResponseWidget(
+                    responseSelectedIndex: responseSelectedIndex,
+                    onResponseSelected: (response) {
+                      playerResponse = response;
+                    },
+                  )
+                : MultipleResponseWidget(
+                    responseSelectedIndex: responseSelectedIndex,
+                    answers: answers,
+                    onResponseSelected: (response) {
+                      playerResponse = response;
+                    },
+                  ),
             const Spacer(
               flex: 1,
             ),
             MaterialButton(
-              onPressed: () async {},
+              onPressed: widget.questionsNumber - 1 == questionSelectedIndex
+                  ? () {
+                      checkPlayerResponse(playerResponse);
+                      print(playerResponses);
+                      pushScreen(context,
+                          screen: ResultPage(
+                            playerResults: playerResponses,
+                          ),
+                          withNavBar: false);
+                    }
+                  : null,
+              disabledColor: const Color(0xffE5E5E5),
               color: kPrimaryColor,
+              textColor: widget.questionsNumber - 1 == questionSelectedIndex
+                  ? Colors.white
+                  : Colors.black26,
               elevation: 3,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5),
@@ -292,7 +324,6 @@ class _QuestionUiState extends State<QuestionUi> {
                 child: Text(
                   "Submit Quiz",
                   style: TextStyle(
-                    color: Colors.white,
                     fontFamily: "Ubuntu",
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
@@ -301,7 +332,7 @@ class _QuestionUiState extends State<QuestionUi> {
               ),
             ),
             const SizedBox(
-              height: 8,
+              height: 12,
             ),
             InkWell(
               onTap: () {},

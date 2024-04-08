@@ -32,6 +32,7 @@ dependencies:
   circular_countdown_timer: ^0.2.3
   cloud_firestore: ^4.15.8
   cupertino_icons: ^1.0.2
+  dashed_circular_progress_bar: ^0.0.6
   firebase_auth: ^4.17.8
   firebase_core: ^2.27.0
   flutter:
