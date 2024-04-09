@@ -7,10 +7,12 @@ class CountDownTimer extends StatelessWidget {
     required this.controller,
     required this.questionSelectedIndex,
     required this.onComplete,
+    this.duration = 60,
   });
 
   final int questionSelectedIndex;
   final CountDownController controller;
+  final int duration;
 
   final void Function()? onComplete;
 
@@ -25,7 +27,7 @@ class CountDownTimer extends StatelessWidget {
       child: CircularCountDownTimer(
         width: 80,
         height: 80,
-        duration: 60,
+        duration: duration,
         controller: controller,
         textStyle: const TextStyle(
           color: Color(0xffA76AE4),

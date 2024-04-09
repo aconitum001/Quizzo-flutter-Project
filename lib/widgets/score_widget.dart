@@ -13,8 +13,8 @@ class ScoreWidget extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          width: MediaQuery.of(context).size.width / 2.07,
-          height: MediaQuery.of(context).size.height / 4.48,
+          width: MediaQuery.of(context).size.width / 2.3,
+          height: MediaQuery.of(context).size.height / 4.7,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: const Color(0xffC7A8FC).withOpacity(0.3),

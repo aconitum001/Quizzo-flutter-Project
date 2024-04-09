@@ -1,8 +1,13 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/models/question.dart';
+import 'package:quiz_app/pages/home_page.dart';
 import 'package:quiz_app/widgets/analysesWidger.dart';
+import 'package:quiz_app/widgets/correction_widget.dart';
 import 'package:quiz_app/widgets/score_widget.dart';
 import 'package:dashed_circular_progress_bar/dashed_circular_progress_bar.dart';
 
@@ -10,9 +15,13 @@ class ResultPage extends StatelessWidget {
   ResultPage({
     super.key,
     required this.playerResults,
+    required this.questions,
+    required this.type,
   });
   final List<String> playerResults;
   final ValueNotifier<double> _valueNotifier = ValueNotifier(0);
+  final List<Question> questions;
+  final String type;
   int score = 0, totalQuestions = 0, correct = 0, skipped = 0, wrong = 0;
 
   @override
@@ -42,10 +51,21 @@ class ResultPage extends StatelessWidget {
             padding: const EdgeInsets.only(left: 4),
             child: IconButton(
               icon: const Icon(
-                Icons.arrow_back,
+                Icons.rule,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                pushScreen(
+                  context,
+                  screen: CorrectionUi(
+                    playerResults: playerResults,
+                    controller: CountDownController(),
+                    questions: questions,
+                    questionsNumber: questions.length,
+                    type: type,
+                  ),
+                );
+              },
             ),
           ),
           actions: [
@@ -54,7 +74,9 @@ class ResultPage extends StatelessWidget {
                 Icons.home,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                pushScreen(context, screen: HomePage());
+              },
             ),
             const SizedBox(
               width: 5,
