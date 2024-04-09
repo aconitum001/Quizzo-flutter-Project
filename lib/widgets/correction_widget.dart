@@ -24,11 +24,11 @@ class CorrectionUi extends StatefulWidget {
   final List<String> playerResults;
   final String type;
   @override
-  State<CorrectionUi> createState() => _QuestionUiState();
+  State<CorrectionUi> createState() => _CorrectionUi();
 }
 
-class _QuestionUiState extends State<CorrectionUi> {
-  List<String> playerResponses = [];
+class _CorrectionUi extends State<CorrectionUi> {
+  // List<String> playerResponses = [];
   int questionSelectedIndex = 0;
 
   String? playerResponse;
@@ -155,9 +155,9 @@ class _QuestionUiState extends State<CorrectionUi> {
                                 children: [
                                   for (int i = 0;
                                       i <
-                                          (widget.questionsNumber == 10
-                                              ? widget.questionsNumber / 2
-                                              : widget.questionsNumber);
+                                          (widget.questions.length == 10
+                                              ? widget.questions.length / 2
+                                              : widget.questions.length);
                                       i++)
                                     QuestionIndicator(
                                       label: "${i + 1}",
@@ -181,9 +181,9 @@ class _QuestionUiState extends State<CorrectionUi> {
                                         i++)
                                       QuestionIndicator(
                                         label: "${i + 1}",
-                                        color: questionSelectedIndex == i
-                                            ? const Color(0xffA76AE4)
-                                            : const Color(0xffE5E5E5),
+                                        color: widget.playerResults[i] == "true"
+                                            ? Colors.green
+                                            : Colors.red,
                                       ),
                                   ],
                                 ),

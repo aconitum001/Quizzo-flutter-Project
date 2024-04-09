@@ -30,36 +30,39 @@ class _QuestionPageState extends State<QuestionPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/images/Question_background.png"),
+    return PopScope(
+      canPop: false,
+      child: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/Question_background.png"),
+          ),
         ),
-      ),
-      child: FutureBuilder(
-        future: GetQuestionsService().getQuestions(
-            type: widget.type,
-            difficulty: widget.difficulty,
-            questionNumbers: widget.questionNumber,
-            catId: widget.catId),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const LoadingWidget();
-          } else if (snapshot.hasData) {
-            questions = snapshot.data!;
+        child: FutureBuilder(
+          future: GetQuestionsService().getQuestions(
+              type: widget.type,
+              difficulty: widget.difficulty,
+              questionNumbers: widget.questionNumber,
+              catId: widget.catId),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const LoadingWidget();
+            } else if (snapshot.hasData) {
+              questions = snapshot.data!;
 
-            return questions.isNotEmpty
-                ? QuestionUi(
-                    controller: controller,
-                    questions: questions,
-                    questionsNumber: int.parse(widget.questionNumber),
-                    type: widget.type,
-                  )
-                : Text("there is no data");
-          } else {
-            return Text(snapshot.error.toString());
-          }
-        },
+              return questions.isNotEmpty
+                  ? QuestionUi(
+                      controller: controller,
+                      questions: questions,
+                      questionsNumber: int.parse(widget.questionNumber),
+                      type: widget.type,
+                    )
+                  : Text("there is no data");
+            } else {
+              return Text(snapshot.error.toString());
+            }
+          },
+        ),
       ),
     );
   }

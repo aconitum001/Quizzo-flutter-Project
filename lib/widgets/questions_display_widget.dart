@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/models/question.dart';
+import 'package:quiz_app/pages/home_page.dart';
 import 'package:quiz_app/pages/results_page.dart';
 import 'package:quiz_app/widgets/boolean_response_widget.dart';
 import 'package:quiz_app/widgets/countDownTimed.dart';
@@ -108,9 +109,9 @@ class _QuestionUiState extends State<QuestionUi> {
         ],
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.popAndPushNamed(context, HomePage.id),
           icon: const Icon(
-            Icons.arrow_back,
+            Icons.logout,
             color: Colors.white,
             size: 30,
           ),
@@ -242,7 +243,6 @@ class _QuestionUiState extends State<QuestionUi> {
               onPressed: widget.questionsNumber - 1 == questionSelectedIndex
                   ? () {
                       checkPlayerResponse(playerResponse);
-                      print(playerResponses);
                       pushScreen(context,
                           screen: ResultPage(
                             playerResults: playerResponses,
@@ -275,19 +275,6 @@ class _QuestionUiState extends State<QuestionUi> {
             ),
             const SizedBox(
               height: 12,
-            ),
-            InkWell(
-              onTap: () {},
-              child: const Text(
-                "Exit",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontFamily: "Ubuntu",
-                  fontWeight: FontWeight.w500,
-                  color: Color(0xffA76AE4),
-                ),
-                textAlign: TextAlign.center,
-              ),
             ),
             const Spacer(
               flex: 2,
