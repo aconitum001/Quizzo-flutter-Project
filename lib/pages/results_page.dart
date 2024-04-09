@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/widgets/analysesWidger.dart';
@@ -11,9 +13,21 @@ class ResultPage extends StatelessWidget {
   });
   final List<String> playerResults;
   final ValueNotifier<double> _valueNotifier = ValueNotifier(0);
+  int score = 0, totalQuestions = 0, correct = 0, skipped = 0, wrong = 0;
 
   @override
   Widget build(BuildContext context) {
+    totalQuestions = playerResults.length;
+    for (String response in playerResults) {
+      if (response == "true") {
+        score += 10;
+        correct++;
+      } else if (response == "false") {
+        wrong++;
+      } else {
+        skipped++;
+      }
+    }
     return Container(
       decoration: const BoxDecoration(
         image: DecorationImage(
@@ -49,9 +63,9 @@ class ResultPage extends StatelessWidget {
         ),
         body: Column(
           children: [
-            const Center(
+            Center(
               child: ScoreWidget(
-                score: 100,
+                score: score,
               ),
             ),
             Padding(
@@ -84,7 +98,7 @@ class ResultPage extends StatelessWidget {
                         child: DashedCircularProgressBar.aspectRatio(
                           aspectRatio: 3.3, // width ÷ height
                           valueNotifier: _valueNotifier,
-                          progress: 65,
+                          progress: (correct * 100) / totalQuestions,
                           maxProgress: 100,
                           corners: StrokeCap.butt,
                           foregroundColor: const Color(0xffA76AE4),
@@ -119,24 +133,24 @@ class ResultPage extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      const Row(
+                      Row(
                         children: [
                           AnaylsesWidget(
-                            number: 20,
+                            number: totalQuestions,
                             label: "Total Questions",
-                            textColor: Color(0xffA42FC1),
-                            containerColor: Color(0xffA42FC1),
+                            textColor: const Color(0xffA42FC1),
+                            containerColor: const Color(0xffA42FC1),
                           ),
-                          Spacer(
+                          const Spacer(
                             flex: 1,
                           ),
                           AnaylsesWidget(
-                            number: 1,
+                            number: skipped,
                             label: "Skipped",
-                            textColor: Color(0xff6680DB),
-                            containerColor: Color(0xff6680DB),
+                            textColor: const Color(0xff6680DB),
+                            containerColor: const Color(0xff6680DB),
                           ),
-                          Spacer(
+                          const Spacer(
                             flex: 1,
                           ),
                         ],
@@ -144,24 +158,24 @@ class ResultPage extends StatelessWidget {
                       const SizedBox(
                         height: 20,
                       ),
-                      const Row(
+                      Row(
                         children: [
                           AnaylsesWidget(
-                            number: 13,
+                            number: correct,
                             label: "Correct",
-                            textColor: Color(0xff1F8435),
-                            containerColor: Color(0xff1F8435),
+                            textColor: const Color(0xff1F8435),
+                            containerColor: const Color(0xff1F8435),
                           ),
-                          Spacer(
+                          const Spacer(
                             flex: 2,
                           ),
                           AnaylsesWidget(
-                            number: 6,
+                            number: wrong,
                             label: "Wrong",
-                            textColor: Color(0xffFA3939),
-                            containerColor: Color(0xffFA3939),
+                            textColor: const Color(0xffFA3939),
+                            containerColor: const Color(0xffFA3939),
                           ),
-                          Spacer(
+                          const Spacer(
                             flex: 1,
                           ),
                         ],

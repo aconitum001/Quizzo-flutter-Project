@@ -38,7 +38,10 @@ class _MultipleResponseWidgetState extends State<MultipleResponseWidget> {
             });
           },
           child: ResponseContainer(
-            response: widget.answers[0],
+            response: widget.answers[0]
+                .replaceAll("&#039;", "'")
+                .replaceAll("&quot;", '"')
+                .replaceAll("&amp;", "&"),
             order: "A",
             color: widget.responseSelectedIndex == 0
                 ? const Color(0xff6808C7)
@@ -60,7 +63,10 @@ class _MultipleResponseWidgetState extends State<MultipleResponseWidget> {
             });
           },
           child: ResponseContainer(
-            response: widget.answers[1],
+            response: widget.answers[1]
+                .replaceAll("&#039;", "'")
+                .replaceAll("&quot;", '"')
+                .replaceAll("&amp;", "&"),
             order: "B",
             color: widget.responseSelectedIndex == 1
                 ? const Color(0xff6808C7)
@@ -82,7 +88,10 @@ class _MultipleResponseWidgetState extends State<MultipleResponseWidget> {
             });
           },
           child: ResponseContainer(
-            response: widget.answers[2],
+            response: widget.answers[2]
+                .replaceAll("&#039;", "'")
+                .replaceAll("&quot;", '"')
+                .replaceAll("&amp;", "&"),
             order: "C",
             color: widget.responseSelectedIndex == 2
                 ? const Color(0xff6808C7)
@@ -104,7 +113,10 @@ class _MultipleResponseWidgetState extends State<MultipleResponseWidget> {
             });
           },
           child: ResponseContainer(
-            response: widget.answers[3],
+            response: widget.answers[3]
+                .replaceAll("&#039;", "'")
+                .replaceAll("&quot;", '"')
+                .replaceAll("&amp;", "&"),
             order: "D",
             color: widget.responseSelectedIndex == 3
                 ? const Color(0xff6808C7)

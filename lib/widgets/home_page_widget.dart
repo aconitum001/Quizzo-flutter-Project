@@ -107,13 +107,21 @@ class HomePageWidget extends StatelessWidget {
                       ),
                       child: Column(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 10),
-                            child: Divider(
-                              color: Colors.deepPurple,
-                              thickness: 3,
-                              indent: 160,
-                              endIndent: 160,
+                          Container(
+                            margin: const EdgeInsets.only(
+                              top: 20,
+                              bottom: 10,
+                            ),
+                            width: 55,
+                            height: 4,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              gradient: LinearGradient(
+                                colors: [
+                                  kPrimaryColor,
+                                  const Color(0xff5C3B7E),
+                                ],
+                              ),
                             ),
                           ),
                           const TabBar(

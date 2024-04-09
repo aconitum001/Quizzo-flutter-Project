@@ -26,7 +26,7 @@ class OnBoardingPage extends StatelessWidget {
             ],
           ),
           Container(
-            alignment: const Alignment(0, 0.43),
+            alignment: const Alignment(0, 0.41),
             child: SmoothPageIndicator(
               controller: controller,
               count: 3,

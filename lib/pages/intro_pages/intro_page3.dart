@@ -33,7 +33,7 @@ class IntroPage3 extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 4.1,
+              height: MediaQuery.of(context).size.height / 3.9,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(30),

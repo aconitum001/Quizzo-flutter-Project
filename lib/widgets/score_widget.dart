@@ -13,8 +13,8 @@ class ScoreWidget extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          width: 200,
-          height: 200,
+          width: MediaQuery.of(context).size.width / 2.07,
+          height: MediaQuery.of(context).size.height / 4.48,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: const Color(0xffC7A8FC).withOpacity(0.3),
@@ -26,8 +26,6 @@ class ScoreWidget extends StatelessWidget {
           right: 20,
           left: 20,
           child: Container(
-            width: 155,
-            height: 158,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Color(0xffC7A8FC),
@@ -40,8 +38,6 @@ class ScoreWidget extends StatelessWidget {
           right: 40,
           left: 40,
           child: Container(
-            width: 116,
-            height: 116,
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,
@@ -64,7 +60,7 @@ class ScoreWidget extends StatelessWidget {
                       Text(
                         "$score ",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 28,
                           fontWeight: FontWeight.bold,
                           fontFamily: kFontText,
                           color: const Color(0xff9D57E3),

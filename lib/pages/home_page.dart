@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
-import 'package:quiz_app/pages/add_page.dart';
+import 'package:quiz_app/pages/details_page.dart';
 import 'package:quiz_app/pages/categories_page.dart';
 import 'package:quiz_app/pages/cubits/homepage_cubit/homepage_cubit.dart';
 import 'package:quiz_app/pages/leader_board_page.dart';
@@ -13,10 +13,15 @@ import 'package:quiz_app/widgets/loading_widget.dart';
 
 class HomePage extends StatelessWidget {
   static String id = "/home_page";
+
   String? username;
+
   Map<String, dynamic>? data;
+
   bool isLoading = false;
+
   PersistentTabController controller = PersistentTabController();
+
   bool hide = false;
 
   @override
