@@ -15,6 +15,7 @@ import 'package:quiz_app/widgets/signUptextfield_widget.dart';
 class SignUpPage extends StatelessWidget {
   static String id = "/signUpPage";
   String? userName, email, password;
+  int score = 0;
   bool isLoading = false;
   GlobalKey<FormState> formkey = GlobalKey();
 
@@ -122,6 +123,7 @@ class SignUpPage extends StatelessWidget {
                               email: email!,
                               password: password,
                               userName: userName!,
+                              score: score,
                             );
                           }
                         },

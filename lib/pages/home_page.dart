@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
+import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/pages/details_page.dart';
 import 'package:quiz_app/pages/categories_page.dart';
 
@@ -33,7 +34,19 @@ class HomePage extends StatelessWidget {
       future: getUserDetails(id: email!),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const LoadingWidget();
+          return Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  kPrimaryColor,
+                  const Color(0xff5C3B7E),
+                ],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+            child: const LoadingWidget(),
+          );
         } else if (snapshot.hasData) {
           data = snapshot.data!.data() as Map<String, dynamic>;
           username = data!["username"];

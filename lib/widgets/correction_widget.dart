@@ -50,7 +50,11 @@ class _CorrectionUi extends State<CorrectionUi> {
     String question = widget.questions[questionSelectedIndex].question
         .replaceAll("&#039;", "'")
         .replaceAll("&quot;", '"')
-        .replaceAll("&amp;", "&");
+        .replaceAll("&amp;", "&")
+        .replaceAll("&ldquo;", '"')
+        .replaceAll("&rdquo;", '"')
+        .replaceAll("&lsquo;", "'")
+        .replaceAll("&rsquo;", "'");
     if (questionSelectedIndex != widget.questionsNumber - 1) {
       answers.shuffle();
     }

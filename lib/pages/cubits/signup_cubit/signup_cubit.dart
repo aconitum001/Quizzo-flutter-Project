@@ -12,14 +12,16 @@ class SignupCubit extends Cubit<SignupState> {
   Future<void> signUpUser(
       {required String userName,
       required String email,
-      required password}) async {
+      required password,
+      required int score}) async {
     emit(SignupLoading());
     try {
       await addUser(email, password);
       await addUserDetails(email: email, userInfo: {
         "email": email,
         "username": userName,
-        "password": password
+        "password": password,
+        "score": score,
       });
       emit(SignupSuccess());
     } on FirebaseAuthException catch (e) {

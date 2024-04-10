@@ -32,6 +32,7 @@ class HomePageWidget extends StatelessWidget {
           ),
         ),
         child: Scaffold(
+          // resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             automaticallyImplyLeading: false,

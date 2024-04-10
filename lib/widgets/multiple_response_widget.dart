@@ -41,7 +41,11 @@ class _MultipleResponseWidgetState extends State<MultipleResponseWidget> {
             response: widget.answers[0]
                 .replaceAll("&#039;", "'")
                 .replaceAll("&quot;", '"')
-                .replaceAll("&amp;", "&"),
+                .replaceAll("&amp;", "&")
+                .replaceAll("&ldquo;", '"')
+                .replaceAll("&rdquo;", '"')
+                .replaceAll("&lsquo;", "'")
+                .replaceAll("&rsquo;", "'"),
             order: "A",
             color: widget.responseSelectedIndex == 0
                 ? const Color(0xff6808C7)
@@ -66,7 +70,11 @@ class _MultipleResponseWidgetState extends State<MultipleResponseWidget> {
             response: widget.answers[1]
                 .replaceAll("&#039;", "'")
                 .replaceAll("&quot;", '"')
-                .replaceAll("&amp;", "&"),
+                .replaceAll("&amp;", "&")
+                .replaceAll("&ldquo;", '"')
+                .replaceAll("&rdquo;", '"')
+                .replaceAll("&lsquo;", "'")
+                .replaceAll("&rsquo;", "'"),
             order: "B",
             color: widget.responseSelectedIndex == 1
                 ? const Color(0xff6808C7)
@@ -91,7 +99,11 @@ class _MultipleResponseWidgetState extends State<MultipleResponseWidget> {
             response: widget.answers[2]
                 .replaceAll("&#039;", "'")
                 .replaceAll("&quot;", '"')
-                .replaceAll("&amp;", "&"),
+                .replaceAll("&amp;", "&")
+                .replaceAll("&ldquo;", '"')
+                .replaceAll("&rdquo;", '"')
+                .replaceAll("&lsquo;", "'")
+                .replaceAll("&rsquo;", "'"),
             order: "C",
             color: widget.responseSelectedIndex == 2
                 ? const Color(0xff6808C7)
@@ -116,7 +128,11 @@ class _MultipleResponseWidgetState extends State<MultipleResponseWidget> {
             response: widget.answers[3]
                 .replaceAll("&#039;", "'")
                 .replaceAll("&quot;", '"')
-                .replaceAll("&amp;", "&"),
+                .replaceAll("&amp;", "&")
+                .replaceAll("&ldquo;", '"')
+                .replaceAll("&rdquo;", '"')
+                .replaceAll("&lsquo;", "'")
+                .replaceAll("&rsquo;", "'"),
             order: "D",
             color: widget.responseSelectedIndex == 3
                 ? const Color(0xff6808C7)

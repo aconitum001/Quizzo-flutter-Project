@@ -29,7 +29,11 @@ class _MultipleCorrectionWidgetState extends State<MultipleCorrectionWidget> {
           response: widget.answers[0]
               .replaceAll("&#039;", "'")
               .replaceAll("&quot;", '"')
-              .replaceAll("&amp;", "&"),
+              .replaceAll("&amp;", "&")
+              .replaceAll("&ldquo;", '"')
+              .replaceAll("&rdquo;", '"')
+              .replaceAll("&lsquo;", "'")
+              .replaceAll("&rsquo;", "'"),
           order: widget.wrongAnswers.contains(widget.answers[0]) ? "X" : "O",
           color: widget.wrongAnswers.contains(widget.answers[0])
               ? Colors.red
@@ -39,7 +43,11 @@ class _MultipleCorrectionWidgetState extends State<MultipleCorrectionWidget> {
           response: widget.answers[1]
               .replaceAll("&#039;", "'")
               .replaceAll("&quot;", '"')
-              .replaceAll("&amp;", "&"),
+              .replaceAll("&amp;", "&")
+              .replaceAll("&ldquo;", '"')
+              .replaceAll("&rdquo;", '"')
+              .replaceAll("&lsquo;", "'")
+              .replaceAll("&rsquo;", "'"),
           order: widget.wrongAnswers.contains(widget.answers[1]) ? "X" : "O",
           color: widget.wrongAnswers.contains(widget.answers[1])
               ? Colors.red
@@ -49,7 +57,11 @@ class _MultipleCorrectionWidgetState extends State<MultipleCorrectionWidget> {
           response: widget.answers[2]
               .replaceAll("&#039;", "'")
               .replaceAll("&quot;", '"')
-              .replaceAll("&amp;", "&"),
+              .replaceAll("&amp;", "&")
+              .replaceAll("&ldquo;", '"')
+              .replaceAll("&rdquo;", '"')
+              .replaceAll("&lsquo;", "'")
+              .replaceAll("&rsquo;", "'"),
           order: widget.wrongAnswers.contains(widget.answers[2]) ? "X" : "O",
           color: widget.wrongAnswers.contains(widget.answers[2])
               ? Colors.red
@@ -59,7 +71,11 @@ class _MultipleCorrectionWidgetState extends State<MultipleCorrectionWidget> {
           response: widget.answers[3]
               .replaceAll("&#039;", "'")
               .replaceAll("&quot;", '"')
-              .replaceAll("&amp;", "&"),
+              .replaceAll("&amp;", "&")
+              .replaceAll("&ldquo;", '"')
+              .replaceAll("&rdquo;", '"')
+              .replaceAll("&lsquo;", "'")
+              .replaceAll("&rsquo;", "'"),
           order: widget.wrongAnswers.contains(widget.answers[3]) ? "X" : "O",
           color: widget.wrongAnswers.contains(widget.answers[3])
               ? Colors.red
