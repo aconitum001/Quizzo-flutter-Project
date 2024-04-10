@@ -7,3 +7,8 @@ Future<void> addUserDetails(
       .doc(email)
       .set(userInfo);
 }
+
+Future<DocumentSnapshot<Map<String, dynamic>>> getUserDetails(
+    {required String id}) {
+  return FirebaseFirestore.instance.collection("users").doc(id).get();
+}

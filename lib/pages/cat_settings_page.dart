@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/pages/home_page.dart';
 
 import 'package:quiz_app/pages/question_page.dart';
 import 'package:quiz_app/widgets/difficulty_container.dart';
@@ -9,12 +10,14 @@ import 'package:quiz_app/widgets/number_container.dart';
 import 'package:quiz_app/widgets/typeContainer.dart';
 
 class CatSettingsPage extends StatefulWidget {
-  CatSettingsPage({
+  const CatSettingsPage({
     super.key,
     required this.catId,
+    required this.email,
   });
   static String id = "catSettingsPage";
   final int catId;
+  final String email;
 
   @override
   State<CatSettingsPage> createState() => _CatSettingsPageState();
@@ -67,6 +70,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                           pushScreen(
                             context,
                             screen: QuestionPage(
+                              email: widget.email,
                               type: type!,
                               catId: widget.catId.toString(),
                               questionNumber: questionNumbers.toString(),
@@ -92,7 +96,11 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                 ],
                 backgroundColor: Colors.transparent,
                 leading: IconButton(
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () => Navigator.popAndPushNamed(
+                    context,
+                    HomePage.id,
+                    arguments: widget.email,
+                  ),
                   icon: const Icon(
                     Icons.arrow_back,
                     color: Colors.white,

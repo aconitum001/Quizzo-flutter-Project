@@ -12,9 +12,10 @@ class QuestionPage extends StatefulWidget {
     required this.difficulty,
     required this.questionNumber,
     required this.type,
+    required this.email,
   });
 
-  final String difficulty, type, catId, questionNumber;
+  final String difficulty, type, catId, questionNumber, email;
   static String id = "questionPage";
 
   @override
@@ -30,6 +31,7 @@ class _QuestionPageState extends State<QuestionPage> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.email);
     return PopScope(
       canPop: false,
       child: Container(
@@ -52,6 +54,7 @@ class _QuestionPageState extends State<QuestionPage> {
 
               return questions.isNotEmpty
                   ? QuestionUi(
+                      email: widget.email,
                       controller: controller,
                       questions: questions,
                       questionsNumber: int.parse(widget.questionNumber),

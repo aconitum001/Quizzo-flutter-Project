@@ -17,11 +17,12 @@ class ResultPage extends StatelessWidget {
     required this.playerResults,
     required this.questions,
     required this.type,
+    required this.email,
   });
   final List<String> playerResults;
   final ValueNotifier<double> _valueNotifier = ValueNotifier(0);
   final List<Question> questions;
-  final String type;
+  final String type, email;
   int score = 0, totalQuestions = 0, correct = 0, skipped = 0, wrong = 0;
 
   @override
@@ -77,7 +78,8 @@ class ResultPage extends StatelessWidget {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  pushScreen(context, screen: HomePage());
+                  Navigator.popAndPushNamed(context, HomePage.id,
+                      arguments: email);
                 },
               ),
               const SizedBox(

@@ -1,11 +1,12 @@
 // ignore_for_file: use_key_in_widget_constructors, must_be_immutable
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:quiz_app/pages/details_page.dart';
 import 'package:quiz_app/pages/categories_page.dart';
-import 'package:quiz_app/pages/cubits/homepage_cubit/homepage_cubit.dart';
+
+import 'package:quiz_app/pages/firebase_services.dart/firestore.dart';
 import 'package:quiz_app/pages/leader_board_page.dart';
 import 'package:quiz_app/pages/profile_page.dart';
 import 'package:quiz_app/widgets/home_page_widget.dart';
@@ -19,6 +20,7 @@ class HomePage extends StatelessWidget {
   Map<String, dynamic>? data;
 
   bool isLoading = false;
+  String? email;
 
   PersistentTabController controller = PersistentTabController();
 
@@ -26,20 +28,15 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomepageCubit, HomepageState>(
-      listener: (context, state) {
-        if (state is HomepageSuccess) {
-          isLoading = false;
-          data = state.snapshot.data() as Map<String, dynamic>;
-          username = data!["username"];
-        } else if (state is HomepageLoading) {
-          isLoading = true;
-        }
-      },
-      builder: (context, state) {
-        if (isLoading) {
+    email = ModalRoute.of(context)!.settings.arguments as String;
+    return FutureBuilder(
+      future: getUserDetails(id: email!),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
           return const LoadingWidget();
-        } else {
+        } else if (snapshot.hasData) {
+          data = snapshot.data!.data() as Map<String, dynamic>;
+          username = data!["username"];
           return PersistentTabView(
             resizeToAvoidBottomInset: true,
             handleAndroidBackButtonPress: true,
@@ -49,6 +46,7 @@ class HomePage extends StatelessWidget {
             tabs: [
               PersistentTabConfig(
                 screen: HomePageWidget(
+                  email: email,
                   username: username,
                 ),
                 item: ItemConfig(
@@ -64,6 +62,7 @@ class HomePage extends StatelessWidget {
               ),
               PersistentTabConfig(
                 screen: CategoriesPage(
+                  email: email!,
                   hidenavbar: hide,
                 ),
                 item: ItemConfig(
@@ -144,6 +143,8 @@ class HomePage extends StatelessWidget {
             navBarBuilder: (navBarConfig) =>
                 Style13BottomNavBar(navBarConfig: navBarConfig),
           );
+        } else {
+          return Text(snapshot.error.toString());
         }
       },
     );

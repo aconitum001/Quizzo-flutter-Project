@@ -10,10 +10,12 @@ class CategoriesPage extends StatefulWidget {
   CategoriesPage({
     super.key,
     required this.hidenavbar,
+    required this.email,
   });
 
   static String id = "/categoriesPage";
   bool hidenavbar;
+  final String email;
 
   @override
   State<CategoriesPage> createState() => _CategoriesPageState();
@@ -57,7 +59,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     if (catId != null) {
                       pushScreenWithoutNavBar(
                         context,
-                        CatSettingsPage(catId: catId!),
+                        CatSettingsPage(catId: catId!, email: widget.email),
                       );
                     }
                   },

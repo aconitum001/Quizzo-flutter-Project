@@ -17,12 +17,13 @@ class QuestionUi extends StatefulWidget {
     required this.questions,
     required this.questionsNumber,
     required this.type,
+    required this.email,
   });
 
   final CountDownController controller;
   final List<Question> questions;
   final int questionsNumber;
-  final String type;
+  final String type, email;
   @override
   State<QuestionUi> createState() => _QuestionUiState();
 }
@@ -109,7 +110,11 @@ class _QuestionUiState extends State<QuestionUi> {
         ],
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          onPressed: () => Navigator.popAndPushNamed(context, HomePage.id),
+          onPressed: () => Navigator.popAndPushNamed(
+            context,
+            HomePage.id,
+            arguments: widget.email,
+          ),
           icon: const Icon(
             Icons.logout,
             color: Colors.white,
@@ -151,6 +156,7 @@ class _QuestionUiState extends State<QuestionUi> {
                                   checkPlayerResponse(playerResponse);
                                   pushScreen(context,
                                       screen: ResultPage(
+                                        email: widget.email,
                                         playerResults: playerResponses,
                                         questions: widget.questions,
                                         type: widget.type,
@@ -245,6 +251,7 @@ class _QuestionUiState extends State<QuestionUi> {
                       checkPlayerResponse(playerResponse);
                       pushScreen(context,
                           screen: ResultPage(
+                            email: widget.email,
                             playerResults: playerResponses,
                             questions: widget.questions,
                             type: widget.type,

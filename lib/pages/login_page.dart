@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/helper/show_toast.dart';
-import 'package:quiz_app/pages/cubits/homepage_cubit/homepage_cubit.dart';
 
 import 'package:quiz_app/pages/cubits/login_cubit/login_cubit.dart';
 import 'package:quiz_app/pages/home_page.dart';
@@ -26,11 +25,10 @@ class LogInPage extends StatelessWidget {
         if (state is LoginLoading) {
           isLoading = true;
         } else if (state is LoginSuccess) {
-          BlocProvider.of<HomepageCubit>(context).getUserDetails(id: email!);
           toastSuccess(
               message: "Welcome to Quiz Application!", context: context);
           isLoading = false;
-          Navigator.pushNamed(context, HomePage.id);
+          Navigator.pushNamed(context, HomePage.id, arguments: email);
         } else if (state is LoginFailure) {
           isLoading = false;
           toastFailure(message: state.errMessage, context: context);

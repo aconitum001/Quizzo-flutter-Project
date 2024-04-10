@@ -10,9 +10,10 @@ class HomePageWidget extends StatelessWidget {
   const HomePageWidget({
     super.key,
     required this.username,
+    required this.email,
   });
 
-  final String? username;
+  final String? username, email;
   static String id = "/homePageWidget";
 
   @override
