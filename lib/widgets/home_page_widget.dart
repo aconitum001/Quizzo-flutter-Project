@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/pages/tabs/first_tab.dart';
 import 'package:quiz_app/pages/tabs/secound_tab.dart';
@@ -11,10 +10,12 @@ class HomePageWidget extends StatelessWidget {
     super.key,
     required this.username,
     required this.email,
+    required this.score,
   });
 
   final String? username, email;
   static String id = "/homePageWidget";
+  final int score;
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +52,36 @@ class HomePageWidget extends StatelessWidget {
               ],
             ),
             actions: [
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(color: Colors.white),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.account_balance,
+                      color: Colors.white,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      "$score ",
+                      style: TextStyle(
+                        fontFamily: kFontText,
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                width: 25,
+              ),
               Image.asset("assets/images/man.png"),
               const SizedBox(
                 width: 15,

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/models/question.dart';
-import 'package:quiz_app/pages/firebase_services.dart/firestore.dart';
 import 'package:quiz_app/pages/home_page.dart';
 import 'package:quiz_app/pages/results_page.dart';
 import 'package:quiz_app/widgets/boolean_response_widget.dart';

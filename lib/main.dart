@@ -53,7 +53,7 @@ class Quiz extends StatelessWidget {
           GetStartedPage.id: (context) => const GetStartedPage(),
           LogInPage.id: (context) => LogInPage(),
           SignUpPage.id: (context) => SignUpPage(),
-          LeaderBoardPage.id: (context) => const LeaderBoardPage(),
+          LeaderBoardPage.id: (context) => LeaderBoardPage(),
           ProfilePage.id: (context) => const ProfilePage(),
           SplashSreen.id: (context) => const SplashSreen(),
         },

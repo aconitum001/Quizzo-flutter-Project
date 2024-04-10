@@ -5,6 +5,7 @@ import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/data.dart';
 import 'package:quiz_app/pages/cat_settings_page.dart';
+import 'package:quiz_app/widgets/custom_container.dart';
 
 class CategoriesPage extends StatefulWidget {
   CategoriesPage({
@@ -117,7 +118,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                       shrinkWrap: true,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: 150 / 125,
+                        childAspectRatio: 1 / 0.85,
                         mainAxisSpacing: 20,
                         crossAxisSpacing: 30,
                         crossAxisCount: 2,
@@ -152,67 +153,6 @@ class _CategoriesPageState extends State<CategoriesPage> {
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class CustomContainer extends StatelessWidget {
-  const CustomContainer(
-      {super.key,
-      required this.image,
-      required this.questionsNumber,
-      required this.title,
-      required this.color});
-
-  final String image, title, questionsNumber;
-  final Color color;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      borderRadius: BorderRadius.circular(10),
-      color: color,
-      elevation: 5,
-      child: Center(
-        child: Column(
-          children: [
-            const Spacer(
-              flex: 1,
-            ),
-            Image.asset(
-              image,
-              width: 53,
-              height: 58,
-            ),
-            const Spacer(
-              flex: 1,
-            ),
-            Text(
-              title,
-              style: const TextStyle(
-                fontFamily: "OldenBurg",
-                fontSize: 14,
-                color: Colors.white,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            Text(
-              " $questionsNumber Questions",
-              style: const TextStyle(
-                fontFamily: "Nunito",
-                fontSize: 9,
-                color: Colors.white,
-              ),
-            ),
-            const Spacer(
-              flex: 1,
-            ),
-          ],
-        ),
       ),
     );
   }

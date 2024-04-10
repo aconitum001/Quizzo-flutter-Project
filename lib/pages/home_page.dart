@@ -22,6 +22,7 @@ class HomePage extends StatelessWidget {
 
   bool isLoading = false;
   String? email;
+  int? score;
 
   PersistentTabController controller = PersistentTabController();
 
@@ -49,6 +50,7 @@ class HomePage extends StatelessWidget {
           );
         } else if (snapshot.hasData) {
           data = snapshot.data!.data() as Map<String, dynamic>;
+          score = data!["score"];
           username = data!["username"];
           return PersistentTabView(
             resizeToAvoidBottomInset: true,
@@ -61,6 +63,7 @@ class HomePage extends StatelessWidget {
                 screen: HomePageWidget(
                   email: email,
                   username: username,
+                  score: score!,
                 ),
                 item: ItemConfig(
                   activeForegroundColor: const Color(0xff613DA6),
@@ -127,7 +130,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               PersistentTabConfig(
-                screen: const LeaderBoardPage(),
+                screen: LeaderBoardPage(),
                 item: ItemConfig(
                   icon: const Icon(Icons.emoji_events),
                   inactiveIcon: const Icon(Icons.emoji_events_outlined),
