@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/widgets/MultipleCorrectionWidget.dart';
-import 'package:quiz_app/widgets/boolean_response_widget.dart';
+import 'package:quiz_app/widgets/booleanCorrectionWidget.dart';
 import 'package:quiz_app/widgets/countDownTimed.dart';
-
 import 'package:quiz_app/widgets/question_indicator.dart';
 
 class CorrectionUi extends StatefulWidget {
@@ -28,7 +27,6 @@ class CorrectionUi extends StatefulWidget {
 }
 
 class _CorrectionUi extends State<CorrectionUi> {
-  // List<String> playerResponses = [];
   int questionSelectedIndex = 0;
 
   String? playerResponse;
@@ -210,7 +208,9 @@ class _CorrectionUi extends State<CorrectionUi> {
                 flex: 1,
               ),
               widget.type == "boolean"
-                  ? BooleanResponseWidget(
+                  ? BooleanCorrectionWidget(
+                      wrongAnswers: widget
+                          .questions[questionSelectedIndex].incorrectAnswers,
                       responseSelectedIndex: -1,
                       onResponseSelected: (response) {
                         playerResponse = response;

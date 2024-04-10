@@ -155,21 +155,35 @@ class AddPage extends StatelessWidget {
                       title: "Click submit if you completed all the questions",
                     ),
                     const Spacer(
-                      flex: 2,
+                      flex: 1,
                     ),
-                    MaterialButton(
-                      onPressed: () {},
-                      minWidth: double.infinity,
-                      color: Colors.deepPurple,
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: Text(
-                          "let's play",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: "Ubuntu",
-                            fontWeight: FontWeight.w500,
-                            color: Colors.white,
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(24),
+                        gradient: const LinearGradient(
+                          colors: [
+                            Color(0xff8251DE),
+                            Color(0xff462C78),
+                          ],
+                        ),
+                      ),
+                      child: MaterialButton(
+                        onPressed: () {},
+                        minWidth: double.infinity,
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Text(
+                            "let's play",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontFamily: "Ubuntu",
+                              fontWeight: FontWeight.w500,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
@@ -226,24 +240,6 @@ class CustomListTile extends StatelessWidget {
         ],
       ),
     );
-    // ListTile(
-    //   leading: const Padding(
-    //     padding: EdgeInsets.only(bottom: 19),
-    //     child: Icon(
-    //       Icons.circle,
-    //       size: 11,
-    //     ),
-    //   ),
-    //   title: Text(
-    //     title,
-    //     style: const TextStyle(
-    //       fontSize: 14,
-    //       fontFamily: "Nunito",
-    //       fontWeight: FontWeight.bold,
-    //       color: Colors.black,
-    //     ),
-    //   ),
-    // );
   }
 }
 

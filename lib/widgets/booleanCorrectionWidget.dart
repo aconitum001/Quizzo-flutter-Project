@@ -3,21 +3,22 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
 
-class BooleanResponseWidget extends StatefulWidget {
-  BooleanResponseWidget({
+class BooleanCorrectionWidget extends StatefulWidget {
+  BooleanCorrectionWidget({
     super.key,
     required this.responseSelectedIndex,
     required this.onResponseSelected,
+    required this.wrongAnswers,
   });
   int responseSelectedIndex;
-
+  final List<dynamic> wrongAnswers;
   final Function(String?) onResponseSelected;
 
   @override
-  State<BooleanResponseWidget> createState() => _BooleanResponseWidgetState();
+  State<BooleanCorrectionWidget> createState() => _BooleanResponseWidgetState();
 }
 
-class _BooleanResponseWidgetState extends State<BooleanResponseWidget> {
+class _BooleanResponseWidgetState extends State<BooleanCorrectionWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,9 +39,9 @@ class _BooleanResponseWidgetState extends State<BooleanResponseWidget> {
           },
           child: ResponseWidgetV2(
             title: "True",
-            color: widget.responseSelectedIndex == 0
-                ? const Color(0xff6808C7)
-                : Colors.transparent,
+            color: widget.wrongAnswers.contains("True")
+                ? Colors.red
+                : Colors.green,
           ),
         ),
         GestureDetector(
@@ -59,9 +60,9 @@ class _BooleanResponseWidgetState extends State<BooleanResponseWidget> {
           },
           child: ResponseWidgetV2(
             title: "False",
-            color: widget.responseSelectedIndex == 1
-                ? const Color(0xff6808C7)
-                : Colors.transparent,
+            color: widget.wrongAnswers.contains("False")
+                ? Colors.red
+                : Colors.green,
           ),
         ),
       ],
