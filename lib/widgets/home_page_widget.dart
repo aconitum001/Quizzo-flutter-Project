@@ -183,12 +183,12 @@ class HomePageWidget extends StatelessWidget {
                                 ThirdTab(),
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),

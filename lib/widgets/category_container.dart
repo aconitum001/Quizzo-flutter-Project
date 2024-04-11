@@ -21,7 +21,7 @@ class CatContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 15),
-      height: 96,
+      height: MediaQuery.of(context).size.height * 0.107,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         border: Border.all(

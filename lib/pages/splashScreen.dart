@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/pages/onBoarding_page.dart';
 
 class SplashSreen extends StatefulWidget {
