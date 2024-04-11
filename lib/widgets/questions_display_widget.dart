@@ -89,6 +89,7 @@ class _QuestionUiState extends State<QuestionUi> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actions: [
           Container(
             margin: const EdgeInsets.only(right: 0),
@@ -215,7 +216,7 @@ class _QuestionUiState extends State<QuestionUi> {
                               ),
                             ),
                           const SizedBox(
-                            height: 8,
+                            height: 10,
                           ),
                           Text(
                             question,
@@ -304,7 +305,7 @@ class _QuestionUiState extends State<QuestionUi> {
                     );
               },
               child: Text(
-                "Check your Answers",
+                "Exit",
                 style: TextStyle(
                   fontSize: 16,
                   fontFamily: "Ubuntu",
