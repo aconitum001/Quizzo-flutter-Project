@@ -8,9 +8,10 @@ class BooleanResponseWidget extends StatefulWidget {
     super.key,
     required this.responseSelectedIndex,
     required this.onResponseSelected,
+    required this.update,
   });
   int responseSelectedIndex;
-
+  final void Function(int) update;
   final Function(String?) onResponseSelected;
 
   @override
@@ -28,9 +29,11 @@ class _BooleanResponseWidgetState extends State<BooleanResponseWidget> {
               () {
                 if (widget.responseSelectedIndex == 0) {
                   widget.responseSelectedIndex = -1;
+                  widget.update(-1);
                   widget.onResponseSelected(null);
                 } else {
                   widget.responseSelectedIndex = 0;
+                  widget.update(0);
                   widget.onResponseSelected("True");
                 }
               },
@@ -49,9 +52,11 @@ class _BooleanResponseWidgetState extends State<BooleanResponseWidget> {
               () {
                 if (widget.responseSelectedIndex == 1) {
                   widget.responseSelectedIndex = -1;
+                  widget.update(-1);
                   widget.onResponseSelected(null);
                 } else {
                   widget.responseSelectedIndex = 1;
+                  widget.update(1);
                   widget.onResponseSelected("False");
                 }
               },

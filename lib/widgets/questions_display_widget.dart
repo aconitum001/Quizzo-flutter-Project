@@ -18,18 +18,22 @@ class QuestionUi extends StatefulWidget {
     required this.questionsNumber,
     required this.type,
     required this.email,
+    required this.catId,
+    required this.difficulty,
+    required this.questionNumber,
   });
 
   final CountDownController controller;
   final List<Question> questions;
   final int questionsNumber;
-  final String type, email;
+  final String type, email, catId, questionNumber, difficulty;
   @override
   State<QuestionUi> createState() => _QuestionUiState();
 }
 
 class _QuestionUiState extends State<QuestionUi> {
   List<String> playerResponses = [];
+  List<int> playerSelectedResponsess = [];
   int questionSelectedIndex = 0;
   int responseSelectedIndex = -1;
   String? playerResponse;
@@ -45,7 +49,14 @@ class _QuestionUiState extends State<QuestionUi> {
     }
   }
 
+  void update(int index) {
+    responseSelectedIndex = index;
+  }
+
   void checkPlayerResponse(String? response) {
+    playerSelectedResponsess.insert(
+        questionSelectedIndex, responseSelectedIndex);
+
     if (response == widget.questions[questionSelectedIndex].correctAnswer) {
       playerResponses.insert(questionSelectedIndex, "true");
     } else if (response == null) {
@@ -75,7 +86,6 @@ class _QuestionUiState extends State<QuestionUi> {
     if (questionSelectedIndex != widget.questionsNumber - 1) {
       answers.shuffle();
     }
-
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
@@ -113,18 +123,6 @@ class _QuestionUiState extends State<QuestionUi> {
           )
         ],
         backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () => Navigator.popAndPushNamed(
-            context,
-            HomePage.id,
-            arguments: widget.email,
-          ),
-          icon: const Icon(
-            Icons.logout,
-            color: Colors.white,
-            size: 30,
-          ),
-        ),
       ),
       body: Padding(
         padding: const EdgeInsets.only(right: 40, left: 40, top: 65),
@@ -161,10 +159,14 @@ class _QuestionUiState extends State<QuestionUi> {
 
                                   pushScreen(context,
                                       screen: ResultPage(
+                                        catId: widget.catId,
+                                        playerSelectedResponses:
+                                            playerSelectedResponsess,
                                         email: widget.email,
                                         playerResults: playerResponses,
                                         questions: widget.questions,
                                         type: widget.type,
+                                        diffiuclty: widget.difficulty,
                                       ),
                                       withNavBar: false);
                                 } else {
@@ -235,12 +237,14 @@ class _QuestionUiState extends State<QuestionUi> {
             ),
             widget.type == "boolean"
                 ? BooleanResponseWidget(
+                    update: update,
                     responseSelectedIndex: responseSelectedIndex,
                     onResponseSelected: (response) {
                       playerResponse = response;
                     },
                   )
                 : MultipleResponseWidget(
+                    update: update,
                     responseSelectedIndex: responseSelectedIndex,
                     answers: answers,
                     onResponseSelected: (response) {
@@ -256,10 +260,13 @@ class _QuestionUiState extends State<QuestionUi> {
                       checkPlayerResponse(playerResponse);
                       pushScreen(context,
                           screen: ResultPage(
+                            playerSelectedResponses: playerSelectedResponsess,
                             email: widget.email,
+                            diffiuclty: widget.difficulty,
                             playerResults: playerResponses,
                             questions: widget.questions,
                             type: widget.type,
+                            catId: widget.catId,
                           ),
                           withNavBar: false);
                     }
@@ -287,6 +294,24 @@ class _QuestionUiState extends State<QuestionUi> {
             ),
             const SizedBox(
               height: 12,
+            ),
+            InkWell(
+              onTap: () {
+                () => Navigator.popAndPushNamed(
+                      context,
+                      HomePage.id,
+                      arguments: widget.email,
+                    );
+              },
+              child: Text(
+                "Check your Answers",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: "Ubuntu",
+                  fontWeight: FontWeight.w500,
+                  color: kPrimaryColor,
+                ),
+              ),
             ),
             const Spacer(
               flex: 2,

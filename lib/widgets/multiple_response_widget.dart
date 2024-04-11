@@ -8,10 +8,11 @@ class MultipleResponseWidget extends StatefulWidget {
     required this.responseSelectedIndex,
     required this.answers,
     required this.onResponseSelected,
+    required this.update,
   });
   int responseSelectedIndex;
   final List<dynamic> answers;
-
+  final void Function(int) update;
   final Function(String?) onResponseSelected;
 
   @override
@@ -29,10 +30,12 @@ class _MultipleResponseWidgetState extends State<MultipleResponseWidget> {
               if (widget.responseSelectedIndex == 0) {
                 // Deselect the currently selected response
                 widget.responseSelectedIndex = -1;
+                widget.update(-1);
                 widget.onResponseSelected(null);
               } else {
                 // Select the tapped response
                 widget.responseSelectedIndex = 0;
+                widget.update(0);
                 widget.onResponseSelected(widget.answers[0]);
               }
             });
@@ -58,10 +61,12 @@ class _MultipleResponseWidgetState extends State<MultipleResponseWidget> {
               if (widget.responseSelectedIndex == 1) {
                 // Deselect the currently selected response
                 widget.responseSelectedIndex = -1;
+                widget.update(-1);
                 widget.onResponseSelected(null);
               } else {
                 // Select the tapped response
                 widget.responseSelectedIndex = 1;
+                widget.update(1);
                 widget.onResponseSelected(widget.answers[1]);
               }
             });
@@ -87,10 +92,12 @@ class _MultipleResponseWidgetState extends State<MultipleResponseWidget> {
               if (widget.responseSelectedIndex == 2) {
                 // Deselect the currently selected response
                 widget.responseSelectedIndex = -1;
+                widget.update(-1);
                 widget.onResponseSelected(null);
               } else {
                 // Select the tapped response
                 widget.responseSelectedIndex = 2;
+                widget.update(2);
                 widget.onResponseSelected(widget.answers[2]);
               }
             });
@@ -116,10 +123,12 @@ class _MultipleResponseWidgetState extends State<MultipleResponseWidget> {
               if (widget.responseSelectedIndex == 3) {
                 // Deselect the currently selected response
                 widget.responseSelectedIndex = -1;
+                widget.update(-1);
                 widget.onResponseSelected(null);
               } else {
                 // Select the tapped response
                 widget.responseSelectedIndex = 3;
+                widget.update(3);
                 widget.onResponseSelected(widget.answers[3]);
               }
             });

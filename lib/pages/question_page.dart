@@ -59,6 +59,9 @@ class _QuestionPageState extends State<QuestionPage> {
                       questions: questions,
                       questionsNumber: int.parse(widget.questionNumber),
                       type: widget.type,
+                      difficulty: widget.difficulty,
+                      catId: widget.catId,
+                      questionNumber: widget.questionNumber,
                     )
                   : Text("there is no data");
             } else {

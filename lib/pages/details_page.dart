@@ -155,41 +155,7 @@ class AddPage extends StatelessWidget {
                       title: "Click submit if you completed all the questions",
                     ),
                     const Spacer(
-                      flex: 1,
-                    ),
-                    Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(24),
-                        gradient: const LinearGradient(
-                          colors: [
-                            Color(0xff8251DE),
-                            Color(0xff462C78),
-                          ],
-                        ),
-                      ),
-                      child: MaterialButton(
-                        onPressed: () {},
-                        minWidth: double.infinity,
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          child: Text(
-                            "let's play",
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontFamily: "Ubuntu",
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Spacer(
-                      flex: 3,
+                      flex: 4,
                     ),
                   ],
                 ),

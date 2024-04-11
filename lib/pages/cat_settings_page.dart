@@ -136,12 +136,12 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                         height: 13,
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           DifficultyContainer(
                             title: "Hard",
                             color: difficultySelectedindex == 0
-                                ? const Color(0xff71DFC6)
+                                ? const Color(0xffC7A8FC)
                                 : const Color(0xffE3D8F7),
                             onTap: () {
                               setState(() {
@@ -158,7 +158,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                           DifficultyContainer(
                             title: "Medium",
                             color: difficultySelectedindex == 1
-                                ? const Color(0xff71DFC6)
+                                ? const Color(0xffC7A8FC)
                                 : const Color(0xffE3D8F7),
                             onTap: () {
                               setState(() {
@@ -175,7 +175,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                           DifficultyContainer(
                             title: "Easy",
                             color: difficultySelectedindex == 2
-                                ? const Color(0xff71DFC6)
+                                ? const Color(0xffC7A8FC)
                                 : const Color(0xffE3D8F7),
                             onTap: () {
                               setState(() {
@@ -230,7 +230,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                       TypeContainer(
                         title: "True/false",
                         color: typeSelectedIndex == 0
-                            ? const Color(0xff71DFC6)
+                            ? const Color(0xffC7A8FC)
                             : const Color(0xffE3D8F7),
                         onTap: () {
                           setState(() {
@@ -250,7 +250,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                       TypeContainer(
                         title: "Multiple Choise",
                         color: typeSelectedIndex == 1
-                            ? const Color(0xff71DFC6)
+                            ? const Color(0xffC7A8FC)
                             : const Color(0xffE3D8F7),
                         onTap: () {
                           setState(
@@ -292,7 +292,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                         height: 20,
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           NumberContainer(
                             title: "5 Questions",
@@ -308,7 +308,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                               });
                             },
                             color: questionIndex == 0
-                                ? const Color(0xff71DFC6)
+                                ? const Color(0xffC7A8FC)
                                 : const Color(0xffE3D8F7),
                           ),
                           NumberContainer(
@@ -325,24 +325,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                               });
                             },
                             color: questionIndex == 1
-                                ? const Color(0xff71DFC6)
-                                : const Color(0xffE3D8F7),
-                          ),
-                          NumberContainer(
-                            title: "15 Questions",
-                            onTap: () {
-                              setState(() {
-                                if (questionIndex == 2) {
-                                  questionIndex = -1;
-                                  questionNumbers = null;
-                                } else {
-                                  questionIndex = 2;
-                                  questionNumbers = 15;
-                                }
-                              });
-                            },
-                            color: questionIndex == 2
-                                ? const Color(0xff71DFC6)
+                                ? const Color(0xffC7A8FC)
                                 : const Color(0xffE3D8F7),
                           ),
                         ],

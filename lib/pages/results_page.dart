@@ -7,6 +7,7 @@ import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/pages/firebase_services.dart/firestore.dart';
 import 'package:quiz_app/pages/home_page.dart';
+import 'package:quiz_app/pages/question_page.dart';
 import 'package:quiz_app/widgets/analysesWidger.dart';
 import 'package:quiz_app/widgets/correction_widget.dart';
 import 'package:quiz_app/widgets/score_widget.dart';
@@ -19,11 +20,15 @@ class ResultPage extends StatelessWidget {
     required this.questions,
     required this.type,
     required this.email,
+    required this.playerSelectedResponses,
+    required this.diffiuclty,
+    required this.catId,
   });
   final List<String> playerResults;
   final ValueNotifier<double> _valueNotifier = ValueNotifier(0);
   final List<Question> questions;
-  final String type, email;
+  final String type, email, diffiuclty, catId;
+  final List<int> playerSelectedResponses;
   int score = 0, totalQuestions = 0, correct = 0, skipped = 0, wrong = 0;
 
   @override
@@ -51,28 +56,8 @@ class ResultPage extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.transparent,
-            leading: Padding(
-              padding: const EdgeInsets.only(left: 4),
-              child: IconButton(
-                icon: const Icon(
-                  Icons.rule,
-                  color: Colors.white,
-                ),
-                onPressed: () {
-                  pushScreen(
-                    context,
-                    screen: CorrectionUi(
-                      playerResults: playerResults,
-                      controller: CountDownController(),
-                      questions: questions,
-                      questionsNumber: questions.length,
-                      type: type,
-                    ),
-                  );
-                },
-              ),
-            ),
             actions: [
               IconButton(
                 icon: const Icon(
@@ -80,8 +65,11 @@ class ResultPage extends StatelessWidget {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.popAndPushNamed(context, HomePage.id,
-                      arguments: email);
+                  Navigator.popAndPushNamed(
+                    context,
+                    HomePage.id,
+                    arguments: email,
+                  );
                 },
               ),
               const SizedBox(
@@ -215,11 +203,25 @@ class ResultPage extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 47, vertical: 30),
+                padding: const EdgeInsets.only(
+                    right: 47, left: 47, top: 30, bottom: 15),
                 child: MaterialButton(
                   elevation: 5,
-                  onPressed: () {},
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  onPressed: () {
+                    pushScreen(
+                      context,
+                      screen: QuestionPage(
+                        catId: catId,
+                        difficulty: diffiuclty,
+                        questionNumber: questions.length.toString(),
+                        type: type,
+                        email: email,
+                      ),
+                    );
+                  },
                   height: 50,
                   minWidth: double.infinity,
                   color: kPrimaryColor,
@@ -234,7 +236,31 @@ class ResultPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 ),
-              )
+              ),
+              InkWell(
+                onTap: () {
+                  pushScreen(
+                    context,
+                    screen: CorrectionUi(
+                      playerSlectedResponses: playerSelectedResponses,
+                      playerResults: playerResults,
+                      controller: CountDownController(),
+                      questions: questions,
+                      questionsNumber: questions.length,
+                      type: type,
+                    ),
+                  );
+                },
+                child: Text(
+                  "Check your Answers",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontFamily: "Ubuntu",
+                    fontWeight: FontWeight.w500,
+                    color: kPrimaryColor,
+                  ),
+                ),
+              ),
             ],
           ),
         ),

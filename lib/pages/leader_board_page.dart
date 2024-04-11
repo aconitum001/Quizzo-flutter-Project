@@ -28,7 +28,6 @@ class LeaderBoardPage extends StatelessWidget {
           for (int i = 0; i < docIds.length; i++) {
             users.add(User.fromjson(docIds[i].data()));
           }
-
           return Scaffold(
             backgroundColor: kPrimaryColor,
             body: Padding(

@@ -8,19 +8,20 @@ import 'package:quiz_app/widgets/countDownTimed.dart';
 import 'package:quiz_app/widgets/question_indicator.dart';
 
 class CorrectionUi extends StatefulWidget {
-  const CorrectionUi({
-    super.key,
-    required this.controller,
-    required this.questions,
-    required this.questionsNumber,
-    required this.type,
-    required this.playerResults,
-  });
+  const CorrectionUi(
+      {super.key,
+      required this.controller,
+      required this.questions,
+      required this.questionsNumber,
+      required this.type,
+      required this.playerResults,
+      required this.playerSlectedResponses});
 
   final CountDownController controller;
   final List<Question> questions;
   final int questionsNumber;
   final List<String> playerResults;
+  final List<int> playerSlectedResponses;
   final String type;
   @override
   State<CorrectionUi> createState() => _CorrectionUi();
@@ -44,9 +45,7 @@ class _CorrectionUi extends State<CorrectionUi> {
         widget.questions[questionSelectedIndex].incorrectAnswers;
     String correctAnswer =
         widget.questions[questionSelectedIndex].correctAnswer;
-
     List<dynamic> answers = [...wrongAnswers, correctAnswer];
-
     String question = widget.questions[questionSelectedIndex].question
         .replaceAll("&#039;", "'")
         .replaceAll("&quot;", '"')
@@ -163,9 +162,9 @@ class _CorrectionUi extends State<CorrectionUi> {
                                       i++)
                                     QuestionIndicator(
                                       label: "${i + 1}",
-                                      color: widget.playerResults[i] == "true"
-                                          ? Colors.green
-                                          : Colors.red,
+                                      color: questionSelectedIndex == i
+                                          ? const Color(0xffA76AE4)
+                                          : const Color(0xffE5E5E5),
                                     ),
                                 ],
                               ),
@@ -183,9 +182,9 @@ class _CorrectionUi extends State<CorrectionUi> {
                                         i++)
                                       QuestionIndicator(
                                         label: "${i + 1}",
-                                        color: widget.playerResults[i] == "true"
-                                            ? Colors.green
-                                            : Colors.red,
+                                        color: questionSelectedIndex == i
+                                            ? const Color(0xffA76AE4)
+                                            : const Color(0xffE5E5E5),
                                       ),
                                   ],
                                 ),
@@ -223,7 +222,8 @@ class _CorrectionUi extends State<CorrectionUi> {
                   : MultipleCorrectionWidget(
                       wrongAnswers: widget
                           .questions[questionSelectedIndex].incorrectAnswers,
-                      responseSelectedIndex: -1,
+                      responseSelectedIndex:
+                          widget.playerSlectedResponses[questionSelectedIndex],
                       answers: answers,
                       onResponseSelected: (response) {
                         playerResponse = response;

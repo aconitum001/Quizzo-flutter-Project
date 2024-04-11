@@ -20,7 +20,7 @@ class DifficultyContainer extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         elevation: 5,
         child: Container(
-          width: 110,
+          width: MediaQuery.of(context).size.width * 0.26,
           height: 85,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),

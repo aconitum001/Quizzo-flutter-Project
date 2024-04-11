@@ -34,10 +34,14 @@ class _MultipleCorrectionWidgetState extends State<MultipleCorrectionWidget> {
               .replaceAll("&rdquo;", '"')
               .replaceAll("&lsquo;", "'")
               .replaceAll("&rsquo;", "'"),
-          order: widget.wrongAnswers.contains(widget.answers[0]) ? "X" : "O",
-          color: widget.wrongAnswers.contains(widget.answers[0])
-              ? Colors.red
-              : Colors.green,
+          order: "A",
+          color: widget.responseSelectedIndex == 0
+              ? widget.wrongAnswers.contains(widget.answers[0])
+                  ? Colors.red
+                  : Colors.green
+              : widget.wrongAnswers.contains(widget.answers[0])
+                  ? Colors.transparent
+                  : Colors.green,
         ),
         ResponseContainer(
           response: widget.answers[1]
@@ -48,10 +52,14 @@ class _MultipleCorrectionWidgetState extends State<MultipleCorrectionWidget> {
               .replaceAll("&rdquo;", '"')
               .replaceAll("&lsquo;", "'")
               .replaceAll("&rsquo;", "'"),
-          order: widget.wrongAnswers.contains(widget.answers[1]) ? "X" : "O",
-          color: widget.wrongAnswers.contains(widget.answers[1])
-              ? Colors.red
-              : Colors.green,
+          order: "B",
+          color: widget.responseSelectedIndex == 1
+              ? widget.wrongAnswers.contains(widget.answers[1])
+                  ? Colors.red
+                  : Colors.green
+              : widget.wrongAnswers.contains(widget.answers[1])
+                  ? Colors.transparent
+                  : Colors.green,
         ),
         ResponseContainer(
           response: widget.answers[2]
@@ -62,10 +70,14 @@ class _MultipleCorrectionWidgetState extends State<MultipleCorrectionWidget> {
               .replaceAll("&rdquo;", '"')
               .replaceAll("&lsquo;", "'")
               .replaceAll("&rsquo;", "'"),
-          order: widget.wrongAnswers.contains(widget.answers[2]) ? "X" : "O",
-          color: widget.wrongAnswers.contains(widget.answers[2])
-              ? Colors.red
-              : Colors.green,
+          order: "C",
+          color: widget.responseSelectedIndex == 2
+              ? widget.wrongAnswers.contains(widget.answers[2])
+                  ? Colors.red
+                  : Colors.green
+              : widget.wrongAnswers.contains(widget.answers[2])
+                  ? Colors.transparent
+                  : Colors.green,
         ),
         ResponseContainer(
           response: widget.answers[3]
@@ -76,10 +88,14 @@ class _MultipleCorrectionWidgetState extends State<MultipleCorrectionWidget> {
               .replaceAll("&rdquo;", '"')
               .replaceAll("&lsquo;", "'")
               .replaceAll("&rsquo;", "'"),
-          order: widget.wrongAnswers.contains(widget.answers[3]) ? "X" : "O",
-          color: widget.wrongAnswers.contains(widget.answers[3])
-              ? Colors.red
-              : Colors.green,
+          order: "D",
+          color: widget.responseSelectedIndex == 3
+              ? widget.wrongAnswers.contains(widget.answers[3])
+                  ? Colors.red
+                  : Colors.green
+              : widget.wrongAnswers.contains(widget.answers[3])
+                  ? Colors.transparent
+                  : Colors.green,
         ),
       ],
     );

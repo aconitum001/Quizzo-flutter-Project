@@ -25,8 +25,10 @@ class _SplashSreenState extends State<SplashSreen> {
   @override
   void dispose() {
     super.dispose();
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
-        overlays: SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIMode(
+      SystemUiMode.manual,
+      overlays: SystemUiOverlay.values,
+    );
   }
 
   @override
@@ -39,7 +41,7 @@ class _SplashSreenState extends State<SplashSreen> {
         ),
       ),
       child: Center(
-        child: Image.asset(kLogo),
+        child: Image.asset("assets/images/logo 1.png"),
       ),
     );
   }
