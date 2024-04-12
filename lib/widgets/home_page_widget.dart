@@ -3,10 +3,15 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/pages/cat_settings_page.dart';
+import 'package:quiz_app/pages/details_page.dart';
+import 'package:quiz_app/pages/home_page.dart';
+import 'package:quiz_app/pages/leader_board_page.dart';
+import 'package:quiz_app/pages/profile_page.dart';
 import 'package:quiz_app/pages/tabs/first_tab.dart';
 import 'package:quiz_app/pages/tabs/secound_tab.dart';
 import 'package:quiz_app/pages/tabs/third_tab.dart';
 import 'package:quiz_app/widgets/custom_searchbar.dart';
+import 'package:quiz_app/widgets/drawer_list_tile.dart';
 
 class HomePageWidget extends StatelessWidget {
   HomePageWidget({
@@ -44,6 +49,112 @@ class HomePageWidget extends StatelessWidget {
           ),
         ),
         child: Scaffold(
+          drawer: SafeArea(
+            child: Drawer(
+              child: ListView(
+                children: [
+                  DrawerHeader(
+                    decoration: const BoxDecoration(color: Color(0xffA166DC)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset(
+                          "assets/images/man.png",
+                          width: 74,
+                          height: 74,
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          username!,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: kFontText,
+                            fontSize: 21,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          " $score points",
+                          style: TextStyle(
+                            fontSize: 12.7,
+                            fontWeight: FontWeight.w300,
+                            fontFamily: kFontText,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 45,
+                  ),
+                  DrawerListTile(
+                    onTap: () {},
+                    icon: Icons.home,
+                    title: "Home",
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  DrawerListTile(
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AddPage(),
+                        ),
+                      );
+                    },
+                    icon: Icons.settings_outlined,
+                    title: "Details",
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  DrawerListTile(
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ProfilePage(),
+                        ),
+                      );
+                    },
+                    icon: Icons.person_outline,
+                    title: "Account",
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  DrawerListTile(
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LeaderBoardPage(),
+                        ),
+                      );
+                    },
+                    icon: Icons.emoji_events_outlined,
+                    title: "Leaderboard",
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  DrawerListTile(
+                    onTap: () {},
+                    icon: Icons.logout,
+                    title: "Logout",
+                  ),
+                ],
+              ),
+            ),
+          ),
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             automaticallyImplyLeading: false,
@@ -51,12 +162,16 @@ class HomePageWidget extends StatelessWidget {
             backgroundColor: Colors.transparent,
             title: Row(
               children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.menu,
-                    size: 30,
-                    color: Colors.white,
+                Builder(
+                  builder: (context) => IconButton(
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                    icon: const Icon(
+                      Icons.menu,
+                      size: 30,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ],

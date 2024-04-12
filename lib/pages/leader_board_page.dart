@@ -29,9 +29,29 @@ class LeaderBoardPage extends StatelessWidget {
             users.add(User.fromjson(docIds[i].data()));
           }
           return Scaffold(
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              leading: Row(
+                children: [
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             backgroundColor: kPrimaryColor,
             body: Padding(
-              padding: const EdgeInsets.only(top: 100, bottom: 0),
+              padding: const EdgeInsets.only(top: 0, bottom: 0),
               child: Column(
                 children: [
                   Padding(
