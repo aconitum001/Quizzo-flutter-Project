@@ -6,8 +6,10 @@ class CatContainer extends StatelessWidget {
     required this.image,
     required this.title,
     required this.questionsNumber,
+    required this.color,
   });
   final String image, title, questionsNumber;
+  final Color color;
   final gradient = const LinearGradient(
     colors: [
       Color(0xff8251DE),
@@ -21,12 +23,12 @@ class CatContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 15),
-      height: MediaQuery.of(context).size.height * 0.107,
+      height: MediaQuery.of(context).size.height * 0.1,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
         border: Border.all(
-          color: const Color(0xff613DA6),
-          width: 1,
+          color: color,
+          width: 2,
         ),
       ),
       child: Row(

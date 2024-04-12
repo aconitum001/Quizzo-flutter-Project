@@ -1,12 +1,15 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/pages/cat_settings_page.dart';
 import 'package:quiz_app/pages/tabs/first_tab.dart';
 import 'package:quiz_app/pages/tabs/secound_tab.dart';
 import 'package:quiz_app/pages/tabs/third_tab.dart';
 import 'package:quiz_app/widgets/custom_searchbar.dart';
 
 class HomePageWidget extends StatelessWidget {
-  const HomePageWidget({
+  HomePageWidget({
     super.key,
     required this.username,
     required this.email,
@@ -16,6 +19,14 @@ class HomePageWidget extends StatelessWidget {
   final String? username, email;
   static String id = "/homePageWidget";
   final int score;
+
+  int selectedIndex = -1;
+  int? idCat;
+
+  void updateIndex(int index, int? id) {
+    selectedIndex = index;
+    idCat = id;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +44,6 @@ class HomePageWidget extends StatelessWidget {
           ),
         ),
         child: Scaffold(
-          // resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             automaticallyImplyLeading: false,
@@ -178,12 +188,63 @@ class HomePageWidget extends StatelessWidget {
                           Expanded(
                             child: TabBarView(
                               children: [
-                                FirstTab(),
-                                SecoundTab(),
-                                ThirdTab(),
+                                FirstTab(
+                                  updateIndex: updateIndex,
+                                ),
+                                SecoundTab(
+                                  updateIndex: updateIndex,
+                                ),
+                                ThirdTab(
+                                  updateIndex: updateIndex,
+                                ),
                               ],
                             ),
                           ),
+                          GestureDetector(
+                            onTap: () {
+                              if (selectedIndex != -1) {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CatSettingsPage(
+                                      catId: idCat!,
+                                      email: email!,
+                                    ),
+                                  ),
+                                );
+                              }
+                            },
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                right: 15,
+                                left: 15,
+                                bottom: 15,
+                                top: 0,
+                              ),
+                              width: double.infinity,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(5),
+                                gradient: const LinearGradient(
+                                  colors: [
+                                    Color(0xff8251DE),
+                                    Color(0xff462C78),
+                                  ],
+                                ),
+                              ),
+                              child: const Center(
+                                child: Text(
+                                  "Start Quiz",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "Ubuntu",
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ),
