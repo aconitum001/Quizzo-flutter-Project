@@ -23,6 +23,8 @@ class MultipleCorrectionWidget extends StatefulWidget {
 class _MultipleCorrectionWidgetState extends State<MultipleCorrectionWidget> {
   @override
   Widget build(BuildContext context) {
+    print(widget.responseSelectedIndex);
+    print(widget.wrongAnswers);
     return Column(
       children: [
         ResponseContainer(

@@ -8,20 +8,21 @@ import 'package:quiz_app/widgets/countDownTimed.dart';
 import 'package:quiz_app/widgets/question_indicator.dart';
 
 class CorrectionUi extends StatefulWidget {
-  const CorrectionUi(
-      {super.key,
-      required this.controller,
-      required this.questions,
-      required this.questionsNumber,
-      required this.type,
-      required this.playerResults,
-      required this.playerSlectedResponses});
+  const CorrectionUi({
+    super.key,
+    required this.controller,
+    required this.questions,
+    required this.questionsNumber,
+    required this.type,
+    required this.playerResults,
+    required this.playerSlectedResponses,
+  });
 
   final CountDownController controller;
   final List<Question> questions;
   final int questionsNumber;
   final List<String> playerResults;
-  final List<int> playerSlectedResponses;
+  final List<Map<String, dynamic>> playerSlectedResponses;
   final String type;
   @override
   State<CorrectionUi> createState() => _CorrectionUi();
@@ -41,11 +42,11 @@ class _CorrectionUi extends State<CorrectionUi> {
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic> wrongAnswers =
-        widget.questions[questionSelectedIndex].incorrectAnswers;
-    String correctAnswer =
-        widget.questions[questionSelectedIndex].correctAnswer;
-    List<dynamic> answers = [...wrongAnswers, correctAnswer];
+    // List<dynamic> wrongAnswers =
+    //     widget.questions[questionSelectedIndex].incorrectAnswers;
+    // String correctAnswer =
+    //     widget.questions[questionSelectedIndex].correctAnswer;
+
     String question = widget.questions[questionSelectedIndex].question
         .replaceAll("&#039;", "'")
         .replaceAll("&quot;", '"')
@@ -54,9 +55,6 @@ class _CorrectionUi extends State<CorrectionUi> {
         .replaceAll("&rdquo;", '"')
         .replaceAll("&lsquo;", "'")
         .replaceAll("&rsquo;", "'");
-    if (questionSelectedIndex != widget.questionsNumber - 1) {
-      answers.shuffle();
-    }
 
     return Container(
       decoration: const BoxDecoration(
@@ -223,8 +221,11 @@ class _CorrectionUi extends State<CorrectionUi> {
                       wrongAnswers: widget
                           .questions[questionSelectedIndex].incorrectAnswers,
                       responseSelectedIndex:
-                          widget.playerSlectedResponses[questionSelectedIndex],
-                      answers: answers,
+                          widget.playerSlectedResponses[questionSelectedIndex]
+                              ["playerSelectedResponses"],
+                      answers:
+                          widget.playerSlectedResponses[questionSelectedIndex]
+                              ["answers"],
                       onResponseSelected: (response) {
                         playerResponse = response;
                       },

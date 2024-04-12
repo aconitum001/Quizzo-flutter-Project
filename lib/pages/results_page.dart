@@ -28,7 +28,7 @@ class ResultPage extends StatelessWidget {
   final ValueNotifier<double> _valueNotifier = ValueNotifier(0);
   final List<Question> questions;
   final String type, email, diffiuclty, catId;
-  final List<int> playerSelectedResponses;
+  final List<Map<String, dynamic>> playerSelectedResponses;
   int score = 0, totalQuestions = 0, correct = 0, skipped = 0, wrong = 0;
 
   @override

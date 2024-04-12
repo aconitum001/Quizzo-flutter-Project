@@ -33,14 +33,14 @@ class QuestionUi extends StatefulWidget {
 
 class _QuestionUiState extends State<QuestionUi> {
   List<String> playerResponses = [];
-  List<int> playerSelectedResponsess = [];
+  List<Map<String, dynamic>> playerSelectedResponsess = [];
   int questionSelectedIndex = 0;
   int responseSelectedIndex = -1;
   String? playerResponse;
   void nextQuestion(List<dynamic> answers, String? response) {
     if (questionSelectedIndex < widget.questionsNumber) {
       setState(() {
-        checkPlayerResponse(response);
+        checkPlayerResponse(response, answers);
         questionSelectedIndex++;
         widget.controller.start();
         responseSelectedIndex = -1;
@@ -53,9 +53,9 @@ class _QuestionUiState extends State<QuestionUi> {
     responseSelectedIndex = index;
   }
 
-  void checkPlayerResponse(String? response) {
-    playerSelectedResponsess.insert(
-        questionSelectedIndex, responseSelectedIndex);
+  void checkPlayerResponse(String? response, answers) {
+    playerSelectedResponsess.insert(questionSelectedIndex,
+        {"playerSelectedResponses": responseSelectedIndex, "answers": answers});
 
     if (response == widget.questions[questionSelectedIndex].correctAnswer) {
       playerResponses.insert(questionSelectedIndex, "true");
@@ -86,6 +86,7 @@ class _QuestionUiState extends State<QuestionUi> {
     if (questionSelectedIndex != widget.questionsNumber - 1) {
       answers.shuffle();
     }
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       appBar: AppBar(
@@ -156,7 +157,7 @@ class _QuestionUiState extends State<QuestionUi> {
                               onComplete: () {
                                 if (questionSelectedIndex ==
                                     widget.questionsNumber - 1) {
-                                  checkPlayerResponse(playerResponse);
+                                  checkPlayerResponse(playerResponse, answers);
 
                                   pushScreen(context,
                                       screen: ResultPage(
@@ -258,7 +259,7 @@ class _QuestionUiState extends State<QuestionUi> {
             MaterialButton(
               onPressed: widget.questionsNumber - 1 == questionSelectedIndex
                   ? () {
-                      checkPlayerResponse(playerResponse);
+                      checkPlayerResponse(playerResponse, answers);
                       pushScreen(context,
                           screen: ResultPage(
                             playerSelectedResponses: playerSelectedResponsess,
