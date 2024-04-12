@@ -1,11 +1,12 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/pages/cat_settings_page.dart';
 import 'package:quiz_app/pages/details_page.dart';
-import 'package:quiz_app/pages/home_page.dart';
 import 'package:quiz_app/pages/leader_board_page.dart';
+import 'package:quiz_app/pages/login_page.dart';
 import 'package:quiz_app/pages/profile_page.dart';
 import 'package:quiz_app/pages/tabs/first_tab.dart';
 import 'package:quiz_app/pages/tabs/secound_tab.dart';
@@ -104,7 +105,9 @@ class HomePageWidget extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => AddPage(),
+                          builder: (context) => AddPage(
+                            email: email!,
+                          ),
                         ),
                       );
                     },
@@ -120,7 +123,7 @@ class HomePageWidget extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ProfilePage(),
+                          builder: (context) => ProfilePage(email: email!),
                         ),
                       );
                     },
@@ -136,7 +139,7 @@ class HomePageWidget extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => LeaderBoardPage(),
+                          builder: (context) => LeaderBoardPage(email: email!),
                         ),
                       );
                     },
@@ -147,7 +150,10 @@ class HomePageWidget extends StatelessWidget {
                     height: 15,
                   ),
                   DrawerListTile(
-                    onTap: () {},
+                    onTap: () {
+                      FirebaseAuth.instance.signOut();
+                      Navigator.popAndPushNamed(context, LogInPage.id);
+                    },
                     icon: Icons.logout,
                     title: "Logout",
                   ),
@@ -177,36 +183,6 @@ class HomePageWidget extends StatelessWidget {
               ],
             ),
             actions: [
-              Container(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.white),
-                ),
-                child: Row(
-                  children: [
-                    const Icon(
-                      Icons.account_balance,
-                      color: Colors.white,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "$score ",
-                      style: TextStyle(
-                        fontFamily: kFontText,
-                        fontSize: 16,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                width: 25,
-              ),
               Image.asset("assets/images/man.png"),
               const SizedBox(
                 width: 15,

@@ -299,11 +299,8 @@ class _QuestionUiState extends State<QuestionUi> {
             ),
             InkWell(
               onTap: () {
-                () => Navigator.popAndPushNamed(
-                      context,
-                      HomePage.id,
-                      arguments: widget.email,
-                    );
+                Navigator.popAndPushNamed(context, HomePage.id,
+                    arguments: widget.email);
               },
               child: Text(
                 "Exit",

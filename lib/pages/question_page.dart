@@ -48,7 +48,9 @@ class _QuestionPageState extends State<QuestionPage> {
               catId: widget.catId),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return const LoadingWidget();
+              return const LoadingWidget(
+                color: Colors.deepPurple,
+              );
             } else if (snapshot.hasData) {
               questions = snapshot.data!;
 

@@ -28,36 +28,41 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     email = ModalRoute.of(context)!.settings.arguments as String;
-    return FutureBuilder(
-      future: getUserDetails(id: email!),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  kPrimaryColor,
-                  const Color(0xff5C3B7E),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+    return PopScope(
+      canPop: false,
+      child: FutureBuilder(
+        future: getUserDetails(id: email!),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    kPrimaryColor,
+                    const Color(0xff5C3B7E),
+                  ],
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                ),
               ),
-            ),
-            child: const LoadingWidget(),
-          );
-        } else if (snapshot.hasData) {
-          data = snapshot.data!.data() as Map<String, dynamic>;
-          score = data!["score"];
-          username = data!["username"];
-          return HomePageWidget(
-            username: username,
-            email: email,
-            score: score!,
-          );
-        } else {
-          return Text(snapshot.error.toString());
-        }
-      },
+              child: const LoadingWidget(
+                color: Colors.white,
+              ),
+            );
+          } else if (snapshot.hasData) {
+            data = snapshot.data!.data() as Map<String, dynamic>;
+            score = data!["score"];
+            username = data!["username"];
+            return HomePageWidget(
+              username: username,
+              email: email,
+              score: score!,
+            );
+          } else {
+            return Text(snapshot.error.toString());
+          }
+        },
+      ),
     );
   }
 }

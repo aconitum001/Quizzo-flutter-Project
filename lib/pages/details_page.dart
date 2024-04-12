@@ -1,176 +1,179 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/pages/home_page.dart';
 
 class AddPage extends StatelessWidget {
-  const AddPage({
-    super.key,
-  });
+  const AddPage({super.key, required this.email});
+  final String email;
 
   @override
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              kPrimaryColor,
-              const Color(0xff5C3B7E),
-            ],
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                kPrimaryColor,
+                const Color(0xff5C3B7E),
+              ],
+            ),
           ),
-        ),
-        child: Column(
-          children: [
-            AppBar(
-              automaticallyImplyLeading: false,
-              clipBehavior: Clip.none,
-              backgroundColor: Colors.transparent,
-              leading: Row(
-                children: [
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      size: 30,
-                      color: Colors.white,
+          child: Column(
+            children: [
+              AppBar(
+                automaticallyImplyLeading: false,
+                clipBehavior: Clip.none,
+                backgroundColor: Colors.transparent,
+                leading: Row(
+                  children: [
+                    const SizedBox(
+                      width: 5,
                     ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.popAndPushNamed(context, HomePage.id,
+                            arguments: email);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+                actions: [
+                  Image.asset("assets/images/man.png"),
+                  const SizedBox(
+                    width: 15,
                   ),
                 ],
               ),
-              actions: [
-                Image.asset("assets/images/man.png"),
-                const SizedBox(
-                  width: 15,
-                ),
-              ],
-            ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.1,
-            ),
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadiusDirectional.circular(30),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 12, left: 12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Container(
-                          margin: const EdgeInsets.only(
-                            top: 20,
-                            bottom: 20,
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.1,
+              ),
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadiusDirectional.circular(30),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 12, left: 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: Container(
+                            margin: const EdgeInsets.only(
+                              top: 20,
+                              bottom: 20,
+                            ),
+                            width: 55,
+                            height: 4,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              gradient: LinearGradient(
+                                colors: [
+                                  kPrimaryColor,
+                                  const Color(0xff5C3B7E),
+                                ],
+                              ),
+                            ),
                           ),
-                          width: 55,
-                          height: 4,
+                        ),
+                        const Text(
+                          "Quiz details",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: "Oldenburg",
+                            fontSize: 20,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          width: double.infinity,
+                          height: 64,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            gradient: LinearGradient(
-                              colors: [
-                                kPrimaryColor,
-                                const Color(0xff5C3B7E),
+                            color: kSecondaryColor.withOpacity(0.36),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 8),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                CustomDetailedContainer(
+                                  icon: Icons.article_outlined,
+                                ),
+                                CustomDetailedText(
+                                  text: "1 Question",
+                                ),
+                                CustomDetailedContainer(
+                                  icon: Icons.access_alarm,
+                                ),
+                                CustomDetailedText(
+                                  text: "1 Minute",
+                                ),
+                                CustomDetailedContainer(
+                                  icon: Icons.star_outline,
+                                ),
+                                CustomDetailedText(
+                                  text: "10 Points",
+                                ),
                               ],
                             ),
                           ),
                         ),
-                      ),
-                      const Text(
-                        "Quiz details",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: "Oldenburg",
-                          fontSize: 20,
+                        const Spacer(
+                          flex: 1,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        width: double.infinity,
-                        height: 64,
-                        decoration: BoxDecoration(
-                          color: kSecondaryColor.withOpacity(0.36),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              CustomDetailedContainer(
-                                icon: Icons.article_outlined,
-                              ),
-                              CustomDetailedText(
-                                text: "1 Question",
-                              ),
-                              CustomDetailedContainer(
-                                icon: Icons.access_alarm,
-                              ),
-                              CustomDetailedText(
-                                text: "1 Minute",
-                              ),
-                              CustomDetailedContainer(
-                                icon: Icons.star_outline,
-                              ),
-                              CustomDetailedText(
-                                text: "10 Points",
-                              ),
-                            ],
+                        const Text(
+                          "Brief explanation about quiz",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: "Oldenburg",
+                            fontSize: 20,
                           ),
                         ),
-                      ),
-                      const Spacer(
-                        flex: 1,
-                      ),
-                      const Text(
-                        "Brief explanation about quiz",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: "Oldenburg",
-                          fontSize: 20,
+                        const SizedBox(
+                          height: 25,
                         ),
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      const CustomListTile(
-                        title:
-                            "10 points awarded for a correct answer and no points for a incorrect answer",
-                      ),
-                      const CustomListTile(
-                        title: "1 Minute allotted to answer one question. ",
-                      ),
-                      const CustomListTile(
-                        title: "Tap on options to select the correct answer",
-                      ),
-                      const CustomListTile(
-                        title:
-                            "Tap on button Next to move to the next question",
-                      ),
-                      const CustomListTile(
-                        title:
-                            "Click submit if you completed all the questions",
-                      ),
-                      const Spacer(
-                        flex: 4,
-                      ),
-                    ],
+                        const CustomListTile(
+                          title:
+                              "10 points awarded for a correct answer and no points for a incorrect answer",
+                        ),
+                        const CustomListTile(
+                          title: "1 Minute allotted to answer one question. ",
+                        ),
+                        const CustomListTile(
+                          title: "Tap on options to select the correct answer",
+                        ),
+                        const CustomListTile(
+                          title:
+                              "Tap on button Next to move to the next question",
+                        ),
+                        const CustomListTile(
+                          title:
+                              "Click submit if you completed all the questions",
+                        ),
+                        const Spacer(
+                          flex: 4,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
