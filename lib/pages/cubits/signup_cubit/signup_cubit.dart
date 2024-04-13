@@ -22,6 +22,10 @@ class SignupCubit extends Cubit<SignupState> {
         "username": userName,
         "password": password,
         "score": score,
+        "correctAnswer": 0,
+        "history": [],
+        "quizTaken": 0,
+        "totalQuestions": 0,
       });
       emit(SignupSuccess());
     } on FirebaseAuthException catch (e) {

@@ -3,6 +3,7 @@ class Question {
   String difficulty;
   String question;
   String correctAnswer;
+  String name;
   List<dynamic> incorrectAnswers;
 
   Question({
@@ -11,6 +12,7 @@ class Question {
     required this.correctAnswer,
     required this.incorrectAnswers,
     required this.question,
+    required this.name,
   });
 
   factory Question.fromJson(jsonData) {
@@ -20,6 +22,7 @@ class Question {
       correctAnswer: jsonData["correct_answer"],
       incorrectAnswers: jsonData["incorrect_answers"],
       question: jsonData["question"],
+      name: jsonData["category"],
     );
   }
 

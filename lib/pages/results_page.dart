@@ -44,7 +44,16 @@ class ResultPage extends StatelessWidget {
         skipped++;
       }
     }
-    updateUserDetails(id: email, score: score);
+    updateUserDetails(
+      id: email,
+      score: score,
+      questionNumbers: questions.length - skipped,
+      correctAnswers: correct,
+      catName: questions[0].name,
+      questionlength: questions.length,
+      difficulty: diffiuclty,
+      date: DateTime.now(),
+    );
     return PopScope(
       canPop: false,
       child: Container(

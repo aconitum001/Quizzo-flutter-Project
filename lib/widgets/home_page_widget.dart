@@ -9,9 +9,9 @@ import 'package:quiz_app/pages/details_page.dart';
 import 'package:quiz_app/pages/leader_board_page.dart';
 import 'package:quiz_app/pages/login_page.dart';
 import 'package:quiz_app/pages/profile_page.dart';
-import 'package:quiz_app/pages/tabs/first_tab.dart';
-import 'package:quiz_app/pages/tabs/secound_tab.dart';
-import 'package:quiz_app/pages/tabs/third_tab.dart';
+import 'package:quiz_app/pages/homePage_tabs/first_tab.dart';
+import 'package:quiz_app/pages/homePage_tabs/secound_tab.dart';
+import 'package:quiz_app/pages/homePage_tabs/third_tab.dart';
 import 'package:quiz_app/widgets/custom_searchbar.dart';
 import 'package:quiz_app/widgets/drawer_list_tile.dart';
 
@@ -21,11 +21,13 @@ class HomePageWidget extends StatelessWidget {
     required this.username,
     required this.email,
     required this.score,
+    required this.data,
   });
 
   final String? username, email;
   static String id = "/homePageWidget";
   final int score;
+  final Map<String, dynamic> data;
 
   int selectedIndex = -1;
   int? idCat;
@@ -124,7 +126,7 @@ class HomePageWidget extends StatelessWidget {
                       Navigator.push(
                         context,
                         PageTransition(
-                          child: ProfilePage(email: email!),
+                          child: ProfilePage(email: email!, data: data),
                           type: PageTransitionType.rightToLeft,
                           duration: const Duration(milliseconds: 300),
                         ),

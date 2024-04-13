@@ -48,6 +48,7 @@ class HomePage extends StatelessWidget {
             score = data!["score"];
             username = data!["username"];
             return HomePageWidget(
+              data: data!,
               username: username,
               email: email,
               score: score!,
