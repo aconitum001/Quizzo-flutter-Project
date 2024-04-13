@@ -1,3 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
+import 'package:audioplayers/audioplayers.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -9,6 +12,7 @@ import 'package:quiz_app/widgets/boolean_response_widget.dart';
 import 'package:quiz_app/widgets/countDownTimed.dart';
 import 'package:quiz_app/widgets/multiple_response_widget.dart';
 import 'package:quiz_app/widgets/question_indicator.dart';
+import 'package:quiz_app/widgets/soundWidget.dart';
 
 class QuestionUi extends StatefulWidget {
   const QuestionUi({
@@ -27,17 +31,28 @@ class QuestionUi extends StatefulWidget {
   final List<Question> questions;
   final int questionsNumber;
   final String type, email, catId, questionNumber, difficulty;
+
   @override
   State<QuestionUi> createState() => _QuestionUiState();
 }
 
 class _QuestionUiState extends State<QuestionUi> {
+  final player = AudioPlayer();
   List<String> playerResponses = [];
   List<Map<String, dynamic>> playerSelectedResponsess = [];
   int questionSelectedIndex = 0;
   int responseSelectedIndex = -1;
   String? playerResponse;
-  void nextQuestion(List<dynamic> answers, String? response) {
+  bool sound = true;
+
+  Future<void> playSound() async {
+    String soundPath =
+        "sounds/analog-timer-60-sec-2-startof-171599.mp3"; //You don't need to include assets/ because AssetSource assume that you have sound in your assets folder.
+    await player.play(AssetSource(soundPath));
+  }
+
+  void nextQuestion(List<dynamic> answers, String? response) async {
+    await player.stop();
     if (questionSelectedIndex < widget.questionsNumber) {
       setState(() {
         checkPlayerResponse(response, answers);
@@ -47,6 +62,7 @@ class _QuestionUiState extends State<QuestionUi> {
         playerResponse = null;
       });
     }
+    playSound();
   }
 
   void update(int index) {
@@ -64,6 +80,12 @@ class _QuestionUiState extends State<QuestionUi> {
     } else {
       playerResponses.insert(questionSelectedIndex, "false");
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    playSound();
   }
 
   @override
@@ -91,6 +113,9 @@ class _QuestionUiState extends State<QuestionUi> {
       backgroundColor: Colors.transparent,
       appBar: AppBar(
         automaticallyImplyLeading: false,
+        title: SoundWidget(
+          player: player,
+        ),
         actions: [
           Container(
             margin: const EdgeInsets.only(right: 0),
@@ -154,10 +179,11 @@ class _QuestionUiState extends State<QuestionUi> {
                             child: CountDownTimer(
                               controller: widget.controller,
                               questionSelectedIndex: questionSelectedIndex,
-                              onComplete: () {
+                              onComplete: () async {
                                 if (questionSelectedIndex ==
                                     widget.questionsNumber - 1) {
                                   checkPlayerResponse(playerResponse, answers);
+                                  await player.stop();
                                   Navigator.push(
                                     context,
                                     PageTransition(
@@ -263,8 +289,9 @@ class _QuestionUiState extends State<QuestionUi> {
             ),
             MaterialButton(
               onPressed: widget.questionsNumber - 1 == questionSelectedIndex
-                  ? () {
+                  ? () async {
                       checkPlayerResponse(playerResponse, answers);
+                      await player.stop();
                       Navigator.push(
                         context,
                         PageTransition(
@@ -308,7 +335,8 @@ class _QuestionUiState extends State<QuestionUi> {
               height: 12,
             ),
             InkWell(
-              onTap: () {
+              onTap: () async {
+                await player.stop();
                 Navigator.popAndPushNamed(context, HomePage.id,
                     arguments: widget.email);
               },
