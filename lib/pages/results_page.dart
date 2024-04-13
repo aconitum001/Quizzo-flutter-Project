@@ -2,7 +2,7 @@
 
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/pages/firebase_services.dart/firestore.dart';
@@ -211,16 +211,30 @@ class ResultPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(5),
                   ),
                   onPressed: () {
-                    pushScreen(
+                    Navigator.push(
                       context,
-                      screen: QuestionPage(
-                        catId: catId,
-                        difficulty: diffiuclty,
-                        questionNumber: questions.length.toString(),
-                        type: type,
-                        email: email,
+                      PageTransition(
+                        child: QuestionPage(
+                          catId: catId,
+                          difficulty: diffiuclty,
+                          questionNumber: questions.length.toString(),
+                          type: type,
+                          email: email,
+                        ),
+                        type: PageTransitionType.topToBottom,
+                        duration: const Duration(milliseconds: 300),
                       ),
                     );
+                    // pushScreen(
+                    //   context,
+                    //   screen: QuestionPage(
+                    //     catId: catId,
+                    //     difficulty: diffiuclty,
+                    //     questionNumber: questions.length.toString(),
+                    //     type: type,
+                    //     email: email,
+                    //   ),
+                    // );
                   },
                   height: 50,
                   minWidth: double.infinity,
@@ -239,15 +253,19 @@ class ResultPage extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  pushScreen(
+                  Navigator.push(
                     context,
-                    screen: CorrectionUi(
-                      playerSlectedResponses: playerSelectedResponses,
-                      playerResults: playerResults,
-                      controller: CountDownController(),
-                      questions: questions,
-                      questionsNumber: questions.length,
-                      type: type,
+                    PageTransition(
+                      child: CorrectionUi(
+                        playerSlectedResponses: playerSelectedResponses,
+                        playerResults: playerResults,
+                        controller: CountDownController(),
+                        questions: questions,
+                        questionsNumber: questions.length,
+                        type: type,
+                      ),
+                      type: PageTransitionType.bottomToTop,
+                      duration: const Duration(milliseconds: 300),
                     ),
                   );
                 },

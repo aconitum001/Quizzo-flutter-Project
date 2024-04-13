@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:quiz_app/pages/cubits/cubit/question_cubit.dart';
-
 import 'package:quiz_app/pages/cubits/login_cubit/login_cubit.dart';
-
 import 'package:quiz_app/pages/cubits/signup_cubit/signup_cubit.dart';
 import 'package:quiz_app/pages/home_page.dart';
 import 'package:quiz_app/pages/intro_pages/get_started.dart';
-import 'package:quiz_app/pages/leader_board_page.dart';
 import 'package:quiz_app/pages/login_page.dart';
 import 'package:quiz_app/pages/onBoarding_page.dart';
-import 'package:quiz_app/pages/profile_page.dart';
 import 'package:quiz_app/pages/sign_up_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:quiz_app/pages/splashScreen.dart';

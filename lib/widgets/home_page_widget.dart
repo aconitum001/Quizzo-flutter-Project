@@ -2,6 +2,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/pages/cat_settings_page.dart';
 import 'package:quiz_app/pages/details_page.dart';
@@ -55,7 +56,9 @@ class HomePageWidget extends StatelessWidget {
               child: ListView(
                 children: [
                   DrawerHeader(
-                    decoration: const BoxDecoration(color: Color(0xffA166DC)),
+                    decoration: const BoxDecoration(
+                      color: Color(0xffA166DC),
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -101,13 +104,11 @@ class HomePageWidget extends StatelessWidget {
                   ),
                   DrawerListTile(
                     onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => AddPage(
-                            email: email!,
-                          ),
+                      Navigator.of(context).push(
+                        PageTransition(
+                          child: AddPage(email: email!),
+                          type: PageTransitionType.rightToLeft,
+                          duration: const Duration(milliseconds: 300),
                         ),
                       );
                     },
@@ -122,8 +123,10 @@ class HomePageWidget extends StatelessWidget {
                       Navigator.pop(context);
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => ProfilePage(email: email!),
+                        PageTransition(
+                          child: ProfilePage(email: email!),
+                          type: PageTransitionType.rightToLeft,
+                          duration: const Duration(milliseconds: 300),
                         ),
                       );
                     },
@@ -135,11 +138,12 @@ class HomePageWidget extends StatelessWidget {
                   ),
                   DrawerListTile(
                     onTap: () {
-                      Navigator.pop(context);
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => LeaderBoardPage(email: email!),
+                        PageTransition(
+                          child: LeaderBoardPage(email: email!),
+                          type: PageTransitionType.rightToLeft,
+                          duration: const Duration(milliseconds: 300),
                         ),
                       );
                     },
@@ -296,11 +300,13 @@ class HomePageWidget extends StatelessWidget {
                               if (selectedIndex != -1) {
                                 Navigator.push(
                                   context,
-                                  MaterialPageRoute(
-                                    builder: (context) => CatSettingsPage(
+                                  PageTransition(
+                                    child: CatSettingsPage(
                                       catId: idCat!,
                                       email: email!,
                                     ),
+                                    type: PageTransitionType.rightToLeft,
+                                    duration: const Duration(milliseconds: 300),
                                   ),
                                 );
                               }

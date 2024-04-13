@@ -1,6 +1,6 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/pages/home_page.dart';
@@ -158,19 +158,24 @@ class _QuestionUiState extends State<QuestionUi> {
                                 if (questionSelectedIndex ==
                                     widget.questionsNumber - 1) {
                                   checkPlayerResponse(playerResponse, answers);
-
-                                  pushScreen(context,
-                                      screen: ResultPage(
-                                        catId: widget.catId,
+                                  Navigator.push(
+                                    context,
+                                    PageTransition(
+                                      type: PageTransitionType.rightToLeft,
+                                      duration:
+                                          const Duration(milliseconds: 300),
+                                      child: ResultPage(
                                         playerSelectedResponses:
                                             playerSelectedResponsess,
                                         email: widget.email,
+                                        diffiuclty: widget.difficulty,
                                         playerResults: playerResponses,
                                         questions: widget.questions,
                                         type: widget.type,
-                                        diffiuclty: widget.difficulty,
+                                        catId: widget.catId,
                                       ),
-                                      withNavBar: false);
+                                    ),
+                                  );
                                 } else {
                                   nextQuestion(answers, playerResponse);
                                 }
@@ -260,8 +265,12 @@ class _QuestionUiState extends State<QuestionUi> {
               onPressed: widget.questionsNumber - 1 == questionSelectedIndex
                   ? () {
                       checkPlayerResponse(playerResponse, answers);
-                      pushScreen(context,
-                          screen: ResultPage(
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          duration: const Duration(milliseconds: 300),
+                          child: ResultPage(
                             playerSelectedResponses: playerSelectedResponsess,
                             email: widget.email,
                             diffiuclty: widget.difficulty,
@@ -270,7 +279,8 @@ class _QuestionUiState extends State<QuestionUi> {
                             type: widget.type,
                             catId: widget.catId,
                           ),
-                          withNavBar: false);
+                        ),
+                      );
                     }
                   : null,
               disabledColor: const Color(0xffE5E5E5),

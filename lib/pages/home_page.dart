@@ -1,12 +1,8 @@
 // ignore_for_file: use_key_in_widget_constructors, must_be_immutable
 
 import 'package:flutter/material.dart';
-
-import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'package:quiz_app/constants.dart';
-
 import 'package:quiz_app/pages/firebase_services.dart/firestore.dart';
-
 import 'package:quiz_app/widgets/home_page_widget.dart';
 import 'package:quiz_app/widgets/loading_widget.dart';
 
@@ -20,8 +16,6 @@ class HomePage extends StatelessWidget {
   bool isLoading = false;
   String? email;
   int? score;
-
-  PersistentTabController controller = PersistentTabController();
 
   bool hide = false;
 

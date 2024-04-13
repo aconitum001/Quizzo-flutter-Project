@@ -31,7 +31,6 @@ class _QuestionPageState extends State<QuestionPage> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.email);
     return PopScope(
       canPop: false,
       child: Container(
@@ -65,7 +64,7 @@ class _QuestionPageState extends State<QuestionPage> {
                       catId: widget.catId,
                       questionNumber: widget.questionNumber,
                     )
-                  : Text("there is no data");
+                  : const Text("there is no data");
             } else {
               return Text(snapshot.error.toString());
             }

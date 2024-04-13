@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-
-import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/pages/home_page.dart';
-
 import 'package:quiz_app/pages/question_page.dart';
 import 'package:quiz_app/widgets/difficulty_container.dart';
 import 'package:quiz_app/widgets/number_container.dart';
@@ -62,21 +60,24 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                         ),
                       ),
                     ),
-                    child: InkWell(
+                    child: GestureDetector(
                       onTap: () {
                         if (difficulty != null &&
                             questionNumbers != null &&
                             type != null) {
-                          pushScreen(
+                          Navigator.push(
                             context,
-                            screen: QuestionPage(
-                              email: widget.email,
-                              type: type!,
-                              catId: widget.catId.toString(),
-                              questionNumber: questionNumbers.toString(),
-                              difficulty: difficulty!,
+                            PageTransition(
+                              child: QuestionPage(
+                                email: widget.email,
+                                type: type!,
+                                catId: widget.catId.toString(),
+                                questionNumber: questionNumbers.toString(),
+                                difficulty: difficulty!,
+                              ),
+                              type: PageTransitionType.rightToLeft,
+                              duration: const Duration(milliseconds: 300),
                             ),
-                            withNavBar: false,
                           );
                         }
                       },

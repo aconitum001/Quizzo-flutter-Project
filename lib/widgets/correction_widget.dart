@@ -235,7 +235,9 @@ class _CorrectionUi extends State<CorrectionUi> {
               ),
               MaterialButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pop(
+                    context,
+                  );
                 },
                 color: kPrimaryColor,
                 textColor: Colors.white,
