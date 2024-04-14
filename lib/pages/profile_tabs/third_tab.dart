@@ -1,5 +1,7 @@
+// ignore_for_file: must_be_immutable
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/widgets/label_widger.dart';
 
 class ThirdProfileTab extends StatelessWidget {
   ThirdProfileTab({
@@ -68,14 +70,14 @@ class ThirdProfileTab extends StatelessWidget {
                     color: Colors.white.withOpacity(0.3),
                     spreadRadius: 0,
                     blurRadius: 16,
-                    offset: Offset(5, 4), // changes position of shadow
+                    offset: const Offset(5, 4), // changes position of shadow
                   ),
                 ],
               ),
               child: ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  foregroundColor: Color(0xff603D83), // Text color
+                  foregroundColor: const Color(0xff603D83), // Text color
                   elevation: 0, // No elevation for the button itself
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
@@ -164,24 +166,6 @@ class ProfileTextField extends StatelessWidget {
             width: 1,
           ),
         ),
-      ),
-    );
-  }
-}
-
-class Label extends StatelessWidget {
-  const Label({super.key, required this.text});
-  final String text;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: TextStyle(
-        fontSize: 15.5,
-        fontFamily: kFontText,
-        fontWeight: FontWeight.w600,
-        color: Colors.white,
       ),
     );
   }

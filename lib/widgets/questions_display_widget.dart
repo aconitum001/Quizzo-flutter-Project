@@ -179,6 +179,7 @@ class _QuestionUiState extends State<QuestionUi> {
                             child: CountDownTimer(
                               controller: widget.controller,
                               questionSelectedIndex: questionSelectedIndex,
+                              duration: widget.type == "multiple" ? 30 : 15,
                               onComplete: () async {
                                 if (questionSelectedIndex ==
                                     widget.questionsNumber - 1) {

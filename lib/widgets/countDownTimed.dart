@@ -7,7 +7,7 @@ class CountDownTimer extends StatelessWidget {
     required this.controller,
     required this.questionSelectedIndex,
     required this.onComplete,
-    this.duration = 60,
+    this.duration = 30,
   });
 
   final int questionSelectedIndex;
