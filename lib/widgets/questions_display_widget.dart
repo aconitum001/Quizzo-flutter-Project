@@ -291,6 +291,7 @@ class _QuestionUiState extends State<QuestionUi> {
             MaterialButton(
               onPressed: widget.questionsNumber - 1 == questionSelectedIndex
                   ? () async {
+                      widget.controller.pause();
                       checkPlayerResponse(playerResponse, answers);
                       await player.stop();
                       Navigator.push(

@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/pages/intro_pages/get_started.dart';
 
@@ -24,7 +25,7 @@ class IntroPage3 extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(
-              flex: 2,
+              flex: 4,
             ),
             Image.asset("assets/images/onBoarding3.png"),
             const Spacer(
@@ -52,7 +53,13 @@ class IntroPage3 extends StatelessWidget {
                   MaterialButton(
                     elevation: 6,
                     onPressed: () {
-                      Navigator.pushNamed(context, GetStartedPage.id);
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          child: const GetStartedPage(),
+                          type: PageTransitionType.rightToLeft,
+                        ),
+                      );
                     },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),

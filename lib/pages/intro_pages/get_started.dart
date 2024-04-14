@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/pages/login_page.dart';
 import 'package:quiz_app/pages/sign_up_page.dart';
@@ -23,7 +24,7 @@ class GetStartedPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Spacer(
-                flex: 8,
+                flex: 11,
               ),
               Image.asset(kLogo),
               const Spacer(
@@ -65,7 +66,15 @@ class GetStartedPage extends StatelessWidget {
                     MaterialButton(
                       elevation: 6,
                       onPressed: () {
-                        Navigator.pushNamed(context, LogInPage.id);
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            child: LogInPage(),
+                            type: PageTransitionType.fade,
+                            duration: const Duration(milliseconds: 500),
+                            reverseDuration: const Duration(milliseconds: 500),
+                          ),
+                        );
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
@@ -89,7 +98,15 @@ class GetStartedPage extends StatelessWidget {
                     MaterialButton(
                       elevation: 6,
                       onPressed: () {
-                        Navigator.pushNamed(context, SignUpPage.id);
+                        Navigator.push(
+                          context,
+                          PageTransition(
+                            child: SignUpPage(),
+                            type: PageTransitionType.fade,
+                            duration: const Duration(milliseconds: 500),
+                            reverseDuration: const Duration(milliseconds: 500),
+                          ),
+                        );
                       },
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),

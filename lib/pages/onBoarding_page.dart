@@ -31,8 +31,8 @@ class OnBoardingPage extends StatelessWidget {
               controller: controller,
               count: 3,
               effect: WormEffect(
-                dotColor: Colors.white,
-                activeDotColor: kTextAccent,
+                dotColor: const Color(0xffBDBDBD).withOpacity(0.8),
+                activeDotColor: Colors.white,
               ),
             ),
           )

@@ -105,16 +105,16 @@ class LeaderBoardPage extends StatelessWidget {
                     ),
                     Expanded(
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 3),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 3, vertical: 20),
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(40),
                         ),
                         child: ListView.builder(
                           itemCount: users.length - 3,
                           itemBuilder: (context, index) => ListTile(
                             trailing: Container(
-                              // padding: EdgeInsets.symmetric(vertical: 10),
                               width: 60,
                               height: 26,
                               decoration: BoxDecoration(
@@ -234,7 +234,7 @@ class LeaderBoardContainer extends StatelessWidget {
                 Text(
                   "$rank",
                   style: const TextStyle(
-                    fontSize: 50,
+                    fontSize: 65,
                     fontWeight: FontWeight.bold,
                     fontFamily: "DM Sans",
                     color: Colors.white,

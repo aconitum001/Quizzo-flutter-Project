@@ -118,6 +118,7 @@ class HomePageWidget extends StatelessWidget {
                           child: AddPage(email: email!),
                           type: PageTransitionType.rightToLeft,
                           duration: const Duration(milliseconds: 300),
+                          reverseDuration: const Duration(milliseconds: 300),
                         ),
                       );
                     },

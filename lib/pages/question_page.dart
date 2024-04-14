@@ -68,16 +68,25 @@ class _QuestionPageState extends State<QuestionPage> {
                   : Scaffold(
                       backgroundColor: Colors.transparent,
                       body: Container(
+                        height: 200,
                         width: double.infinity,
                         margin: const EdgeInsets.symmetric(
                             vertical: 200, horizontal: 30),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 25, vertical: 25),
                         decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              blurRadius: 4,
+                              offset: const Offset(5, 5),
+                            )
+                          ],
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
                               "There is no data for this type of questions",
@@ -107,12 +116,7 @@ class _QuestionPageState extends State<QuestionPage> {
                                 height: 50,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
-                                  gradient: const LinearGradient(
-                                    colors: [
-                                      Color(0xff8251DE),
-                                      Color(0xff462C78),
-                                    ],
-                                  ),
+                                  color: kPrimaryColor,
                                 ),
                                 child: const Center(
                                   child: Text(

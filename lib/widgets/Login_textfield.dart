@@ -3,18 +3,31 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
 
-class CustomTextField extends StatelessWidget {
-  const CustomTextField({
+class CustomTextField extends StatefulWidget {
+  CustomTextField({
     super.key,
     required this.icon,
     required this.label,
     required this.onSubmitted,
     this.obscure = false,
+    this.suffixIcon = false,
   });
   final IconData icon;
   final String label;
   final Function(String)? onSubmitted;
-  final bool obscure;
+  bool obscure;
+  final bool suffixIcon;
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  void update() {
+    setState(() {
+      widget.obscure = !widget.obscure;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +57,28 @@ class CustomTextField extends StatelessWidget {
               }
               return null;
             },
-            obscureText: obscure,
-            onChanged: onSubmitted,
+            obscureText: widget.obscure,
+            onChanged: widget.onSubmitted,
             style: TextStyle(
               fontSize: 16,
               fontFamily: kFontText,
             ),
             decoration: InputDecoration(
+              suffixIcon: widget.suffixIcon
+                  ? (widget.obscure
+                      ? IconButton(
+                          icon: const Icon(
+                            Icons.visibility_off,
+                            color: Color(0xffDEDEDE),
+                          ),
+                          onPressed: update,
+                        )
+                      : IconButton(
+                          icon: const Icon(Icons.visibility,
+                              color: Color(0xffDEDEDE)),
+                          onPressed: update,
+                        ))
+                  : null,
               prefixIcon: Container(
                 margin: const EdgeInsets.only(right: 15),
                 width: 66,
@@ -62,13 +90,17 @@ class CustomTextField extends StatelessWidget {
                   color: kPrimaryColor,
                 ),
                 child: Icon(
-                  icon,
+                  widget.icon,
                   color: Colors.white,
                   size: 28,
                 ),
               ),
-              hintText: label,
-              hintStyle: TextStyle(fontSize: 16, fontFamily: kFontText),
+              hintText: widget.label,
+              hintStyle: TextStyle(
+                fontSize: 16,
+                fontFamily: kFontText,
+                color: const Color(0xffD9D9D9),
+              ),
               focusColor: Colors.white,
               hoverColor: Colors.white,
               contentPadding: const EdgeInsets.only(top: 10, bottom: 10),

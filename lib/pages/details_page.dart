@@ -1,10 +1,17 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/pages/home_page.dart';
 
 class AddPage extends StatelessWidget {
-  const AddPage({super.key, required this.email});
+  AddPage({super.key, required this.email});
   final String email;
+  final AudioPlayer player = AudioPlayer();
+  Future<void> playSound() async {
+    String soundPath =
+        "sounds/click-button-app-147358.mp3"; //You don't need to include assets/ because AssetSource assume that you have sound in your assets folder.
+    await player.play(AssetSource(soundPath));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +35,6 @@ class AddPage extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 clipBehavior: Clip.none,
                 backgroundColor: Colors.transparent,
-                leading: Row(
-                  children: [
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.popAndPushNamed(context, HomePage.id,
-                            arguments: email);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        size: 30,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
                 actions: [
                   Image.asset("assets/images/man.png"),
                   const SizedBox(
@@ -166,6 +155,49 @@ class AddPage extends StatelessWidget {
                         ),
                         const Spacer(
                           flex: 4,
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            playSound();
+                            Navigator.popAndPushNamed(
+                              context,
+                              HomePage.id,
+                              arguments: email,
+                            );
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(
+                              right: 15,
+                              left: 15,
+                              bottom: 15,
+                              top: 0,
+                            ),
+                            width: double.infinity,
+                            height: 50,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              gradient: const LinearGradient(
+                                colors: [
+                                  Color(0xff8251DE),
+                                  Color(0xff462C78),
+                                ],
+                              ),
+                            ),
+                            child: const Center(
+                              child: Text(
+                                "Start Quiz",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontFamily: "Ubuntu",
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const Spacer(
+                          flex: 2,
                         ),
                       ],
                     ),

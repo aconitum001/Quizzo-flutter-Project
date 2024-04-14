@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/helper/show_toast.dart';
 
@@ -52,7 +53,7 @@ class LogInPage extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(
-                          vertical: 30, horizontal: 20),
+                          vertical: 25, horizontal: 24),
                       child: ListView(
                         shrinkWrap: true,
                         children: [
@@ -90,6 +91,7 @@ class LogInPage extends StatelessWidget {
                           CustomTextField(
                             icon: Icons.lock_outline,
                             label: "Password",
+                            suffixIcon: true,
                             obscure: true,
                             onSubmitted: (data) {
                               password = data;
@@ -104,7 +106,8 @@ class LogInPage extends StatelessWidget {
                               elevation: 5,
                               height: 50,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12)),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
                               onPressed: () {
                                 if (formKey.currentState!.validate()) {
                                   BlocProvider.of<LoginCubit>(context)
@@ -116,6 +119,9 @@ class LogInPage extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
+                                  const SizedBox(
+                                    width: 20,
+                                  ),
                                   Text(
                                     "Log in",
                                     style: TextStyle(
@@ -150,7 +156,12 @@ class LogInPage extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              Navigator.pushNamed(context, SignUpPage.id);
+                              Navigator.push(
+                                  context,
+                                  PageTransition(
+                                    child: SignUpPage(),
+                                    type: PageTransitionType.rightToLeft,
+                                  ));
                             },
                             child: Text(
                               "Create New Account",

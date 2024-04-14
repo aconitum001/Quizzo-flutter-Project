@@ -37,9 +37,10 @@ class SignUpTextField extends StatelessWidget {
             ),
             onChanged: onChange,
             decoration: InputDecoration(
+                contentPadding: const EdgeInsets.only(left: 15, top: 10),
                 hintText: hint,
                 hintStyle: TextStyle(
-                  fontSize: 24,
+                  fontSize: 20,
                   fontFamily: kFontText,
                   fontWeight: FontWeight.w600,
                   color: kTextAccent,

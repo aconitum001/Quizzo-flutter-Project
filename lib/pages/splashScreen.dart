@@ -62,7 +62,11 @@ class _SplashSreenState extends State<SplashSreen> {
           duration:
               const Duration(milliseconds: 3000), // Duration of the animation
           opacity: _isVisible ? 1.0 : 0.0, // Set opacity based on visibility
-          child: Image.asset("assets/images/logo 1.png"),
+          child: Image.asset(
+            "assets/images/logo 1.png",
+            width: 146,
+            height: 170,
+          ),
         ),
       ),
     );

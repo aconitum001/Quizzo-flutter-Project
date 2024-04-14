@@ -243,16 +243,6 @@ class ResultPage extends StatelessWidget {
                         duration: const Duration(milliseconds: 300),
                       ),
                     );
-                    // pushScreen(
-                    //   context,
-                    //   screen: QuestionPage(
-                    //     catId: catId,
-                    //     difficulty: diffiuclty,
-                    //     questionNumber: questions.length.toString(),
-                    //     type: type,
-                    //     email: email,
-                    //   ),
-                    // );
                   },
                   height: 50,
                   minWidth: double.infinity,

@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/pages/login_page.dart';
 
@@ -30,7 +31,7 @@ class OnBoardingWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(
-              flex: 2,
+              flex: 4,
             ),
             Image.asset(image),
             const Spacer(
@@ -95,7 +96,17 @@ class OnBoardingWidget extends StatelessWidget {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, LogInPage.id);
+                          Navigator.push(
+                            context,
+                            PageTransition(
+                              child: LogInPage(),
+                              type: PageTransitionType.fade,
+                              duration: const Duration(milliseconds: 500),
+                              reverseDuration:
+                                  const Duration(milliseconds: 500),
+                            ),
+                          );
+                          ;
                         },
                         child: Text(
                           "Login",
