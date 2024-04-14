@@ -21,9 +21,23 @@ class StatsContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      clipBehavior: Clip.none,
       height: MediaQuery.of(context).size.height * 0.085,
       width: MediaQuery.of(context).size.width * 0.43,
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0xffA6ABBD).withOpacity(0.8),
+            spreadRadius: 0,
+            blurRadius: 18.5,
+            offset: const Offset(2.5, 2.5), // changes position of shadow
+          ),
+          BoxShadow(
+            color: const Color(0xffFAFBFF).withOpacity(0.4),
+            offset: const Offset(-1.24, -1.24),
+            blurRadius: 16,
+          )
+        ],
         color: Colors.white,
         borderRadius: BorderRadius.circular(23),
       ),

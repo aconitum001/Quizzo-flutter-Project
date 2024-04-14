@@ -21,6 +21,20 @@ class HistoryContainer extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 17),
       width: double.infinity,
       decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.white.withOpacity(0.3),
+            spreadRadius: 0,
+            blurRadius: 19,
+            offset: const Offset(2.68, 2.68), // changes position of shadow
+          ),
+          BoxShadow(
+            color: const Color(0xffFAFBFF).withOpacity(0.4),
+            spreadRadius: 0,
+            blurRadius: 17.16,
+            offset: const Offset(-1.33, -1.33), // changes position of shadow
+          ),
+        ],
         borderRadius: BorderRadius.circular(23),
         color: Colors.white,
       ),

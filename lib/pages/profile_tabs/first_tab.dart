@@ -44,12 +44,12 @@ class FirstProfileTab extends StatelessWidget {
       'questionNumbers': history[0]["questionNumbers"],
     });
     for (int i = 1; i < history.length; i++) {
-      bool exist = false; // Reset exist for each iteration
+      bool exist = false;
       for (int j = 0; j < historyList.length; j++) {
         if (history[i]["catName"] == historyList[j]["catName"]) {
           exist = true;
           index = j;
-          break; // Exit the loop once a match is found
+          break;
         }
       }
       if (!exist) {
@@ -59,7 +59,6 @@ class FirstProfileTab extends StatelessWidget {
           'questionNumbers': history[i]["questionNumbers"],
         });
       } else {
-        // Update existing category instead of inserting at a specific index
         historyList[index!]['correctQuestions'] +=
             history[i]["correctQuestions"];
         historyList[index!]['questionNumbers'] += history[i]["questionNumbers"];
@@ -89,6 +88,7 @@ class FirstProfileTab extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
       child: ListView(
+        clipBehavior: Clip.none,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -145,14 +145,29 @@ class FirstProfileTab extends StatelessWidget {
                   ),
                 ),
           const SizedBox(
-            height: 15,
+            height: 8,
           ),
           strongestCat.isEmpty
               ? Container()
               : Container(
                   width: double.infinity,
-                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                   decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xffA6ABBD).withOpacity(0.8),
+                        spreadRadius: 0,
+                        blurRadius: 18.5,
+                        offset: const Offset(
+                            2.5, 2.5), // changes position of shadow
+                      ),
+                      BoxShadow(
+                        color: const Color(0xffFAFBFF).withOpacity(0.4),
+                        offset: const Offset(-1.24, -1.24),
+                        blurRadius: 16,
+                      )
+                    ],
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(23),
                   ),
@@ -182,7 +197,7 @@ class FirstProfileTab extends StatelessWidget {
                   ),
                 ),
           const SizedBox(
-            height: 10,
+            height: 25,
           ),
           weakestCat.isEmpty
               ? Container()
@@ -198,13 +213,27 @@ class FirstProfileTab extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    const SizedBox(height: 15),
+                    const SizedBox(height: 8),
                     Container(
                       // height: MediaQuery.of(context).size.height * 0.22,
                       width: double.infinity,
                       padding:
                           EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                       decoration: BoxDecoration(
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xffA6ABBD).withOpacity(0.8),
+                            spreadRadius: 0,
+                            blurRadius: 18.5,
+                            offset: const Offset(
+                                2.5, 2.5), // changes position of shadow
+                          ),
+                          BoxShadow(
+                            color: const Color(0xffFAFBFF).withOpacity(0.4),
+                            offset: const Offset(-1.24, -1.24),
+                            blurRadius: 16,
+                          )
+                        ],
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(23),
                       ),

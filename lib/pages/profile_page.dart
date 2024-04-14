@@ -140,7 +140,7 @@ class ProfilePage extends StatelessWidget {
                         padding: const EdgeInsets.only(right: 15),
                         child: Center(
                           child: Text(
-                            "Edit profile",
+                            "Profile",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 15,
@@ -180,7 +180,7 @@ class ProfilePage extends StatelessWidget {
                             ),
                           )
                         : SecoundProfileTab(data: data),
-                    const ThirdProfileTab(),
+                    ThirdProfileTab(data: data),
                   ]),
                 )
               ],

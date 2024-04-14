@@ -29,17 +29,12 @@ class _SoundWidgetState extends State<SoundWidget> {
           });
         }
       },
-      child: Container(
-        width: 40,
-        height: 40,
-        decoration: BoxDecoration(
-          shape: BoxShape.rectangle,
-          color: const Color(0xffC7A8FC),
-          borderRadius: BorderRadius.circular(5),
-        ),
-        child: Icon(
-          sound == true ? Icons.volume_up_rounded : Icons.volume_off_rounded,
-          color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+        child: Image.asset(
+          sound == true
+              ? "assets/icons/icon music.png"
+              : "assets/icons/Vector.png",
         ),
       ),
     );

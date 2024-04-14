@@ -34,6 +34,7 @@ class SecoundProfileTab extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(top: 30, bottom: 15),
       child: ListView.builder(
+        clipBehavior: Clip.none,
         itemCount: data["history"].length,
         itemBuilder: (context, index) {
           int score = data["history"][index]["earnedPoints"];
