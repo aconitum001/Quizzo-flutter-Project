@@ -156,8 +156,30 @@ class ProfilePage extends StatelessWidget {
                 ),
                 Expanded(
                   child: TabBarView(children: [
-                    FirstProfileTab(data: data),
-                    SecoundProfileTab(data: data),
+                    data["history"].isEmpty
+                        ? Center(
+                            child: Text(
+                              "There is no Stats",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 30,
+                                fontFamily: kFontText,
+                              ),
+                            ),
+                          )
+                        : FirstProfileTab(data: data),
+                    data["history"].isEmpty
+                        ? Center(
+                            child: Text(
+                              "There is no History",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 30,
+                                fontFamily: kFontText,
+                              ),
+                            ),
+                          )
+                        : SecoundProfileTab(data: data),
                     const ThirdProfileTab(),
                   ]),
                 )

@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -29,7 +30,14 @@ class ResultPage extends StatelessWidget {
   final List<Question> questions;
   final String type, email, diffiuclty, catId;
   final List<Map<String, dynamic>> playerSelectedResponses;
+  final AudioPlayer player = AudioPlayer();
   int score = 0, totalQuestions = 0, correct = 0, skipped = 0, wrong = 0;
+
+  Future<void> playSound() async {
+    String soundPath =
+        "sounds/level-complete-mobile-game-app-locran-1-00-06.mp3"; //You don't need to include assets/ because AssetSource assume that you have sound in your assets folder.
+    await player.play(AssetSource(soundPath));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +62,7 @@ class ResultPage extends StatelessWidget {
       difficulty: diffiuclty,
       date: DateTime.now(),
     );
+    playSound();
     return PopScope(
       canPop: false,
       child: Container(

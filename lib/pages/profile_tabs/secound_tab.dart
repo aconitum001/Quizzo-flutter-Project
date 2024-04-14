@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/data.dart';
+import 'package:quiz_app/widgets/history_container.dart';
 
 class SecoundProfileTab extends StatelessWidget {
   SecoundProfileTab({
@@ -18,6 +18,8 @@ class SecoundProfileTab extends StatelessWidget {
   final CategoriesData catdata = CategoriesData();
 
   String getImageForCategory(String categoryName) {
+    categoryName = categoryName.replaceFirst("Science: ", "");
+    categoryName = categoryName.replaceAll("Entertainment: ", "");
     for (var category in catdata.catList) {
       if (category['name'] == categoryName) {
         return category['image'];
@@ -30,7 +32,7 @@ class SecoundProfileTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 30),
+      padding: const EdgeInsets.only(top: 30, bottom: 15),
       child: ListView.builder(
         itemCount: data["history"].length,
         itemBuilder: (context, index) {
@@ -51,99 +53,6 @@ class SecoundProfileTab extends StatelessWidget {
             image: getImageForCategory(catName),
           );
         },
-      ),
-    );
-  }
-}
-
-class HistoryContainer extends StatelessWidget {
-  const HistoryContainer(
-      {super.key,
-      required this.gradient,
-      required this.title,
-      required this.subtitle,
-      required this.date,
-      required this.correct,
-      required this.image});
-
-  final LinearGradient gradient;
-  final String title, subtitle, date, correct, image;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 17),
-      width: double.infinity,
-      height: MediaQuery.of(context).size.height * 0.1,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(23),
-        color: Colors.white,
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-            child: Image.asset(
-              image,
-              width: 60,
-              height: 60,
-            ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontFamily: "Oldenburg",
-                    color: Color(0xff000000),
-                  ),
-                ),
-                ShaderMask(
-                  blendMode: BlendMode.srcIn,
-                  shaderCallback: (rect) => gradient.createShader(rect),
-                  child: Text(
-                    subtitle,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontFamily: "Oldenburg",
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 18),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        date,
-                        style: TextStyle(
-                          color: const Color(0xff999999),
-                          fontSize: 10,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: kFontText,
-                        ),
-                      ),
-                      // Adding some space between the texts
-                      Text(
-                        correct,
-                        style: TextStyle(
-                          color: Color(0xff999999),
-                          fontSize: 10,
-                          fontWeight: FontWeight.w500,
-                          fontFamily: kFontText,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
       ),
     );
   }
