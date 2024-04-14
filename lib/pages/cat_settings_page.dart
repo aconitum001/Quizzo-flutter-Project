@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:quiz_app/constants.dart';
@@ -29,6 +30,14 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
   int difficultySelectedindex = -1;
   int typeSelectedIndex = -1;
   int questionIndex = -1;
+  final AudioPlayer player = AudioPlayer();
+
+  Future<void> playSound() async {
+    String soundPath =
+        "sounds/click-button-app-147358.mp3"; //You don't need to include assets/ because AssetSource assume that you have sound in your assets folder.
+    await player.play(AssetSource(soundPath));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -65,6 +74,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                         if (difficulty != null &&
                             questionNumbers != null &&
                             type != null) {
+                          playSound();
                           Navigator.push(
                             context,
                             PageTransition(

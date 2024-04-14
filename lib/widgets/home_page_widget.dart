@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
@@ -28,9 +29,15 @@ class HomePageWidget extends StatelessWidget {
   static String id = "/homePageWidget";
   final int score;
   final Map<String, dynamic> data;
-
   int selectedIndex = -1;
   int? idCat;
+  final AudioPlayer player = AudioPlayer();
+
+  Future<void> playSound() async {
+    String soundPath =
+        "sounds/click-button-app-147358.mp3"; //You don't need to include assets/ because AssetSource assume that you have sound in your assets folder.
+    await player.play(AssetSource(soundPath));
+  }
 
   void updateIndex(int index, int? id) {
     selectedIndex = index;
@@ -300,6 +307,7 @@ class HomePageWidget extends StatelessWidget {
                           GestureDetector(
                             onTap: () {
                               if (selectedIndex != -1) {
+                                playSound();
                                 Navigator.push(
                                   context,
                                   PageTransition(

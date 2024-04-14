@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data.dart';
 import 'package:quiz_app/widgets/category_container.dart';
@@ -16,6 +17,12 @@ class FirstTab extends StatefulWidget {
 class _FirstTabState extends State<FirstTab> {
   final CategoriesData data = CategoriesData();
   int selectedIndex = -1;
+  final AudioPlayer player = AudioPlayer();
+  Future<void> playSound() async {
+    String soundPath =
+        "sounds/456601__bumpelsnake__select10.wav"; //You don't need to include assets/ because AssetSource assume that you have sound in your assets folder.
+    await player.play(AssetSource(soundPath));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +32,7 @@ class _FirstTabState extends State<FirstTab> {
         itemCount: data.otherList.length,
         itemBuilder: (context, index) => GestureDetector(
           onTap: () {
+            playSound();
             setState(
               () {
                 if (selectedIndex == index) {
