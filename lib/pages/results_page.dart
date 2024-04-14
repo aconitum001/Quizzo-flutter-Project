@@ -111,7 +111,7 @@ class ResultPage extends StatelessWidget {
                   color: Colors.transparent,
                   child: Container(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 40, horizontal: 25),
+                        vertical: 25, horizontal: 25),
                     width: double.infinity,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(24),

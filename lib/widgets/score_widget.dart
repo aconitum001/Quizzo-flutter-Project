@@ -21,10 +21,10 @@ class ScoreWidget extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 20,
-          bottom: 20,
-          right: 20,
-          left: 20,
+          top: 18,
+          bottom: 18,
+          right: 18,
+          left: 18,
           child: Container(
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
@@ -33,10 +33,10 @@ class ScoreWidget extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 40,
-          bottom: 40,
-          right: 40,
-          left: 40,
+          top: 38,
+          bottom: 38,
+          right: 38,
+          left: 38,
           child: Container(
             decoration: const BoxDecoration(
               shape: BoxShape.circle,
@@ -49,7 +49,7 @@ class ScoreWidget extends StatelessWidget {
                   Text(
                     "Score",
                     style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 18,
                         fontFamily: kFontText,
                         fontWeight: FontWeight.w500,
                         color: const Color(0xffA76AE4)),
@@ -60,7 +60,7 @@ class ScoreWidget extends StatelessWidget {
                       Text(
                         "$score ",
                         style: TextStyle(
-                          fontSize: 28,
+                          fontSize: 26,
                           fontWeight: FontWeight.bold,
                           fontFamily: kFontText,
                           color: const Color(0xff9D57E3),
@@ -69,7 +69,7 @@ class ScoreWidget extends StatelessWidget {
                       Text(
                         "pt",
                         style: TextStyle(
-                          fontSize: 20,
+                          fontSize: 18,
                           fontFamily: kFontText,
                           fontWeight: FontWeight.w500,
                           color: const Color(0xffA76AE4),

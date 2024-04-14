@@ -1,5 +1,6 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/models/question.dart';
 import 'package:quiz_app/services/get_questions.dart';
 import 'package:quiz_app/widgets/loading_widget.dart';
@@ -64,7 +65,72 @@ class _QuestionPageState extends State<QuestionPage> {
                       catId: widget.catId,
                       questionNumber: widget.questionNumber,
                     )
-                  : const Text("there is no data");
+                  : Scaffold(
+                      backgroundColor: Colors.transparent,
+                      body: Container(
+                        width: double.infinity,
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 200, horizontal: 30),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 25, vertical: 25),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              "There is no data for this type of questions",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: kFontText,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.only(
+                                  right: 15,
+                                  left: 15,
+                                  bottom: 15,
+                                  top: 0,
+                                ),
+                                width: double.infinity,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  gradient: const LinearGradient(
+                                    colors: [
+                                      Color(0xff8251DE),
+                                      Color(0xff462C78),
+                                    ],
+                                  ),
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    "Change settings",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: "Ubuntu",
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    );
             } else {
               return Text(snapshot.error.toString());
             }

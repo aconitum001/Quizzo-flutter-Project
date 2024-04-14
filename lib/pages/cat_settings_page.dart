@@ -31,6 +31,12 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
   int typeSelectedIndex = -1;
   int questionIndex = -1;
   final AudioPlayer player = AudioPlayer();
+  final AudioPlayer player2 = AudioPlayer();
+  Future<void> playSound2() async {
+    String soundPath =
+        "sounds/456601__bumpelsnake__select10.wav"; //You don't need to include assets/ because AssetSource assume that you have sound in your assets folder.
+    await player2.play(AssetSource(soundPath));
+  }
 
   Future<void> playSound() async {
     String soundPath =
@@ -155,6 +161,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                                 ? const Color(0xffC7A8FC)
                                 : const Color(0xffE3D8F7),
                             onTap: () {
+                              playSound2();
                               setState(() {
                                 if (difficultySelectedindex == 0) {
                                   difficultySelectedindex = -1;
@@ -172,6 +179,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                                 ? const Color(0xffC7A8FC)
                                 : const Color(0xffE3D8F7),
                             onTap: () {
+                              playSound2();
                               setState(() {
                                 if (difficultySelectedindex == 1) {
                                   difficultySelectedindex = -1;
@@ -189,6 +197,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                                 ? const Color(0xffC7A8FC)
                                 : const Color(0xffE3D8F7),
                             onTap: () {
+                              playSound2();
                               setState(() {
                                 if (difficultySelectedindex == 2) {
                                   difficultySelectedindex = -1;
@@ -244,6 +253,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                             ? const Color(0xffC7A8FC)
                             : const Color(0xffE3D8F7),
                         onTap: () {
+                          playSound2();
                           setState(() {
                             if (typeSelectedIndex == 0) {
                               typeSelectedIndex = -1;
@@ -264,6 +274,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                             ? const Color(0xffC7A8FC)
                             : const Color(0xffE3D8F7),
                         onTap: () {
+                          playSound2();
                           setState(
                             () {
                               if (typeSelectedIndex == 1) {
@@ -308,6 +319,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                           NumberContainer(
                             title: "5 Questions",
                             onTap: () {
+                              playSound2();
                               setState(() {
                                 if (questionIndex == 0) {
                                   questionIndex = -1;
@@ -325,6 +337,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                           NumberContainer(
                             title: "10 Questions",
                             onTap: () {
+                              playSound2();
                               setState(() {
                                 if (questionIndex == 1) {
                                   questionIndex = -1;
