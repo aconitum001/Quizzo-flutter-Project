@@ -39,6 +39,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5
+  flutter_launcher_icons: ^0.13.1
   flutter_screenutil: ^5.9.0
   http: ^1.2.0
   modal_progress_hud_nsn: ^0.5.1
@@ -52,6 +53,12 @@ dev_dependencies:
   flutter_lints: ^3.0.2
   flutter_test:
     sdk: flutter
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/image 4.png"
+  adaptive_icon_foreground: "assets/images/image 4.png"
+  adaptive_icon_background: "#A76AE4"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
