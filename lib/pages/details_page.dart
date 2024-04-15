@@ -109,7 +109,7 @@ class AddPage extends StatelessWidget {
                                   icon: Icons.access_alarm,
                                 ),
                                 CustomDetailedText(
-                                  text: "1 Minute",
+                                  text: "30 seconds",
                                 ),
                                 CustomDetailedContainer(
                                   icon: Icons.star_outline,
@@ -140,7 +140,7 @@ class AddPage extends StatelessWidget {
                               "10 points awarded for a correct answer and no points for a incorrect answer",
                         ),
                         const CustomListTile(
-                          title: "1 Minute allotted to answer one question. ",
+                          title: "30 seconds allotted to answer one question. ",
                         ),
                         const CustomListTile(
                           title: "Tap on options to select the correct answer",
@@ -183,16 +183,32 @@ class AddPage extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            child: const Center(
-                              child: Text(
-                                "Start Quiz",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: "Ubuntu",
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white,
+                            child: const Row(
+                              children: [
+                                Spacer(
+                                  flex: 1,
                                 ),
-                              ),
+                                Text(
+                                  "Let's Play",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontFamily: "Ubuntu",
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Icon(
+                                  Icons.arrow_forward_ios_rounded,
+                                  color: Colors.white,
+                                  size: 15,
+                                ),
+                                Spacer(
+                                  flex: 1,
+                                ),
+                              ],
                             ),
                           ),
                         ),
@@ -265,7 +281,7 @@ class CustomDetailedText extends StatelessWidget {
     return Text(
       text,
       style: const TextStyle(
-        fontSize: 14,
+        fontSize: 13.5,
         fontFamily: "Ubuntu",
         fontWeight: FontWeight.w500,
         color: Colors.black,
