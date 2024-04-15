@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/helper/show_toast.dart';
 
@@ -11,6 +12,7 @@ import 'package:quiz_app/pages/cubits/signup_cubit/signup_cubit.dart';
 import 'package:quiz_app/pages/home_page.dart';
 import 'package:quiz_app/widgets/ArrowButton.dart';
 import 'package:quiz_app/widgets/signUptextfield_widget.dart';
+import 'package:showcaseview/showcaseview.dart';
 
 class SignUpPage extends StatelessWidget {
   static String id = "/signUpPage";
@@ -26,10 +28,20 @@ class SignUpPage extends StatelessWidget {
         if (state is SignupLoading) {
           isLoading = true;
         } else if (state is SignupSuccess) {
-          toastSuccess(
-              message: "You have Created An Account!", context: context);
           isLoading = false;
-          Navigator.pushNamed(context, HomePage.id, arguments: email);
+          Navigator.push(
+            context,
+            PageTransition(
+              child: ShowCaseWidget(
+                  builder: Builder(
+                builder: (context) => HomePage(
+                  emails: email!,
+                  first: true,
+                ),
+              )),
+              type: PageTransitionType.rightToLeft,
+            ),
+          );
         } else if (state is SignupFailure) {
           isLoading = false;
           toastFailure(message: state.errMessage, context: context);

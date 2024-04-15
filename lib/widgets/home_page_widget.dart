@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/helper/showcaseview.dart';
 import 'package:quiz_app/pages/cat_settings_page.dart';
 import 'package:quiz_app/pages/details_page.dart';
 import 'package:quiz_app/pages/leader_board_page.dart';
@@ -15,23 +16,56 @@ import 'package:quiz_app/pages/homePage_tabs/secound_tab.dart';
 import 'package:quiz_app/pages/homePage_tabs/third_tab.dart';
 import 'package:quiz_app/widgets/custom_searchbar.dart';
 import 'package:quiz_app/widgets/drawer_list_tile.dart';
+import 'package:showcaseview/showcaseview.dart';
 
-class HomePageWidget extends StatelessWidget {
-  HomePageWidget({
+class HomePageWidget extends StatefulWidget {
+  const HomePageWidget({
     super.key,
     required this.username,
     required this.email,
     required this.score,
     required this.data,
+    this.first = false,
   });
 
   final String? username, email;
   static String id = "/homePageWidget";
   final int score;
   final Map<String, dynamic> data;
+  final bool first;
+
+  @override
+  State<HomePageWidget> createState() => _HomePageWidgetState();
+}
+
+class _HomePageWidgetState extends State<HomePageWidget> {
   int selectedIndex = -1;
   int? idCat;
   final AudioPlayer player = AudioPlayer();
+  final GlobalKey globalKeyOne = GlobalKey();
+  final GlobalKey globalKeyTwo = GlobalKey();
+  final GlobalKey globalKeyThree = GlobalKey();
+  final GlobalKey globalKeyFour = GlobalKey();
+  final GlobalKey globalKeyFive = GlobalKey();
+
+  @override
+  void initState() {
+    if (widget.first) {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (timeStamp) => ShowCaseWidget.of(context).startShowCase(
+          [
+            globalKeyOne,
+            globalKeyTwo,
+            globalKeyThree,
+            globalKeyFour,
+            globalKeyFive,
+          ],
+        ),
+      );
+    }
+
+    super.initState();
+  }
 
   Future<void> playSound() async {
     String soundPath =
@@ -81,7 +115,7 @@ class HomePageWidget extends StatelessWidget {
                           height: 5,
                         ),
                         Text(
-                          username!,
+                          widget.username!,
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: kFontText,
@@ -90,7 +124,7 @@ class HomePageWidget extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          " $score points",
+                          " ${widget.score} points",
                           style: TextStyle(
                             fontSize: 12.7,
                             fontWeight: FontWeight.w300,
@@ -116,7 +150,7 @@ class HomePageWidget extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         PageTransition(
-                          child: AddPage(email: email!),
+                          child: AddPage(email: widget.email!),
                           type: PageTransitionType.rightToLeft,
                           duration: const Duration(milliseconds: 300),
                           reverseDuration: const Duration(milliseconds: 300),
@@ -135,7 +169,8 @@ class HomePageWidget extends StatelessWidget {
                       Navigator.push(
                         context,
                         PageTransition(
-                          child: ProfilePage(email: email!, data: data),
+                          child: ProfilePage(
+                              email: widget.email!, data: widget.data),
                           type: PageTransitionType.rightToLeft,
                           duration: const Duration(milliseconds: 300),
                         ),
@@ -152,7 +187,7 @@ class HomePageWidget extends StatelessWidget {
                       Navigator.push(
                         context,
                         PageTransition(
-                          child: LeaderBoardPage(email: email!),
+                          child: LeaderBoardPage(email: widget.email!),
                           type: PageTransitionType.rightToLeft,
                           duration: const Duration(milliseconds: 300),
                         ),
@@ -184,21 +219,48 @@ class HomePageWidget extends StatelessWidget {
             title: Row(
               children: [
                 Builder(
-                  builder: (context) => IconButton(
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    },
-                    icon: const Icon(
-                      Icons.menu,
-                      size: 30,
-                      color: Colors.white,
+                  builder: (context) => ShowCaseView(
+                    globalKey: globalKeyOne,
+                    title: "Explore Navigation Options",
+                    description:
+                        "Access different sections and features through the navigation menu.",
+                    child: IconButton(
+                      onPressed: () {
+                        Scaffold.of(context).openDrawer();
+                      },
+                      icon: const Icon(
+                        Icons.menu,
+                        size: 30,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
             actions: [
-              Image.asset("assets/images/man.png"),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    PageTransition(
+                      child:
+                          ProfilePage(email: widget.email!, data: widget.data),
+                      type: PageTransitionType.size,
+                      alignment: Alignment.center,
+                      duration: const Duration(milliseconds: 500),
+                      reverseDuration: const Duration(milliseconds: 500),
+                    ),
+                  );
+                },
+                child: ShowCaseView(
+                  globalKey: globalKeyTwo,
+                  title: "Your Personal Space",
+                  description:
+                      "Discover stats, game history, and profile details effortlessly. Dive into insights, review game history, and manage profile settings.",
+                  child: Image.asset("assets/images/man.png"),
+                ),
+              ),
               const SizedBox(
                 width: 15,
               )
@@ -212,7 +274,7 @@ class HomePageWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 36),
                   child: Text(
-                    "Hello, $username ",
+                    "Hello, ${widget.username} ",
                     style: const TextStyle(
                       fontSize: 15,
                       fontFamily: 'DM Sans',
@@ -238,8 +300,14 @@ class HomePageWidget extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                CustomSearchBar(
-                  email: email!,
+                ShowCaseView(
+                  globalKey: globalKeyThree,
+                  title: "Quick Category Search",
+                  description:
+                      "Easily find specific categories by typing keywords into the search bar.",
+                  child: CustomSearchBar(
+                    email: widget.email!,
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
@@ -296,8 +364,14 @@ class HomePageWidget extends StatelessWidget {
                           Expanded(
                             child: TabBarView(
                               children: [
-                                FirstTab(
-                                  updateIndex: updateIndex,
+                                ShowCaseView(
+                                  globalKey: globalKeyFour,
+                                  title: "Explore Topic Categories",
+                                  description:
+                                      "Select a category to delve into quizzes related to specific subjects.",
+                                  child: FirstTab(
+                                    updateIndex: updateIndex,
+                                  ),
                                 ),
                                 SecoundTab(
                                   updateIndex: updateIndex,
@@ -317,7 +391,7 @@ class HomePageWidget extends StatelessWidget {
                                   PageTransition(
                                     child: CatSettingsPage(
                                       catId: idCat!,
-                                      email: email!,
+                                      email: widget.email!,
                                     ),
                                     type: PageTransitionType.rightToLeft,
                                     duration: const Duration(milliseconds: 300),
@@ -325,32 +399,38 @@ class HomePageWidget extends StatelessWidget {
                                 );
                               }
                             },
-                            child: Container(
-                              margin: const EdgeInsets.only(
-                                right: 15,
-                                left: 15,
-                                bottom: 15,
-                                top: 0,
-                              ),
-                              width: double.infinity,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                gradient: const LinearGradient(
-                                  colors: [
-                                    Color(0xff8251DE),
-                                    Color(0xff462C78),
-                                  ],
+                            child: ShowCaseView(
+                              globalKey: globalKeyFive,
+                              title: "Begin Your Quiz Journey",
+                              description:
+                                  "Tap here to start your quiz adventure and test your knowledge!",
+                              child: Container(
+                                margin: const EdgeInsets.only(
+                                  right: 15,
+                                  left: 15,
+                                  bottom: 15,
+                                  top: 0,
                                 ),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  "Start Quiz",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: "Ubuntu",
-                                    fontWeight: FontWeight.w500,
-                                    color: Colors.white,
+                                width: double.infinity,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  gradient: const LinearGradient(
+                                    colors: [
+                                      Color(0xff8251DE),
+                                      Color(0xff462C78),
+                                    ],
+                                  ),
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    "Start Quiz",
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: "Ubuntu",
+                                      fontWeight: FontWeight.w500,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),

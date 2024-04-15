@@ -1,5 +1,4 @@
 // ignore_for_file: use_key_in_widget_constructors, must_be_immutable
-
 import 'package:flutter/material.dart';
 import 'package:quiz_app/constants.dart';
 import 'package:quiz_app/pages/firebase_services.dart/firestore.dart';
@@ -9,7 +8,14 @@ import 'package:quiz_app/widgets/loading_widget.dart';
 class HomePage extends StatelessWidget {
   static String id = "/home_page";
 
+  HomePage({
+    required this.emails,
+    required this.first,
+  });
+
   String? username;
+  final bool first;
+  final String emails;
 
   Map<String, dynamic>? data;
 
@@ -21,7 +27,12 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    email = ModalRoute.of(context)!.settings.arguments as String;
+    if (first == true) {
+      email = emails;
+    } else {
+      email = ModalRoute.of(context)!.settings.arguments as String;
+    }
+
     return PopScope(
       canPop: false,
       child: FutureBuilder(
@@ -52,6 +63,7 @@ class HomePage extends StatelessWidget {
               username: username,
               email: email,
               score: score!,
+              first: first,
             );
           } else {
             return Text(snapshot.error.toString());
