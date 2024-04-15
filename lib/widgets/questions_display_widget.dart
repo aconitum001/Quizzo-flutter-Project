@@ -312,11 +312,11 @@ class _QuestionUiState extends State<QuestionUi> {
                       );
                     }
                   : null,
-              disabledColor: const Color(0xffE5E5E5),
+              disabledColor: const Color(0xffBDBDBD),
               color: kPrimaryColor,
               textColor: widget.questionsNumber - 1 == questionSelectedIndex
                   ? Colors.white
-                  : Colors.black26,
+                  : Colors.white,
               elevation: 3,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(5),

@@ -26,8 +26,7 @@ class LogInPage extends StatelessWidget {
         if (state is LoginLoading) {
           isLoading = true;
         } else if (state is LoginSuccess) {
-          toastSuccess(
-              message: "Welcome to Quiz Application!", context: context);
+          toastSuccess(message: "Welcome to Quizzo!", context: context);
           isLoading = false;
           Navigator.pushNamed(context, HomePage.id, arguments: email);
         } else if (state is LoginFailure) {

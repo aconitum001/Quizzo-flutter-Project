@@ -60,6 +60,7 @@ class HomePageWidget extends StatelessWidget {
           ),
         ),
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           drawer: SafeArea(
             child: Drawer(
               child: ListView(
@@ -237,7 +238,9 @@ class HomePageWidget extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                const CustomSearchBar(),
+                CustomSearchBar(
+                  email: email!,
+                ),
                 const SizedBox(
                   height: 10,
                 ),

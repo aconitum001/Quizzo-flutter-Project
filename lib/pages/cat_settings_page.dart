@@ -58,6 +58,7 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
         ),
       ),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.transparent,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
