@@ -39,11 +39,11 @@ class _MultipleCorrectionWidgetState extends State<MultipleCorrectionWidget> {
           order: "A",
           color: widget.responseSelectedIndex == 0
               ? widget.wrongAnswers.contains(widget.answers[0])
-                  ? Colors.red
-                  : Colors.green
+                  ? const Color(0xffFF0F0F)
+                  : const Color(0xff27A042)
               : widget.wrongAnswers.contains(widget.answers[0])
                   ? Colors.transparent
-                  : Colors.green,
+                  : const Color(0xff27A042),
         ),
         ResponseContainer(
           response: widget.answers[1]
@@ -57,11 +57,11 @@ class _MultipleCorrectionWidgetState extends State<MultipleCorrectionWidget> {
           order: "B",
           color: widget.responseSelectedIndex == 1
               ? widget.wrongAnswers.contains(widget.answers[1])
-                  ? Colors.red
-                  : Colors.green
+                  ? const Color(0xffFF0F0F)
+                  : const Color(0xff27A042)
               : widget.wrongAnswers.contains(widget.answers[1])
                   ? Colors.transparent
-                  : Colors.green,
+                  : const Color(0xff27A042),
         ),
         ResponseContainer(
           response: widget.answers[2]
@@ -75,11 +75,11 @@ class _MultipleCorrectionWidgetState extends State<MultipleCorrectionWidget> {
           order: "C",
           color: widget.responseSelectedIndex == 2
               ? widget.wrongAnswers.contains(widget.answers[2])
-                  ? Colors.red
-                  : Colors.green
+                  ? const Color(0xffFF0F0F)
+                  : const Color(0xff27A042)
               : widget.wrongAnswers.contains(widget.answers[2])
                   ? Colors.transparent
-                  : Colors.green,
+                  : const Color(0xff27A042),
         ),
         ResponseContainer(
           response: widget.answers[3]
@@ -93,11 +93,11 @@ class _MultipleCorrectionWidgetState extends State<MultipleCorrectionWidget> {
           order: "D",
           color: widget.responseSelectedIndex == 3
               ? widget.wrongAnswers.contains(widget.answers[3])
-                  ? Colors.red
-                  : Colors.green
+                  ? const Color(0xffFF0F0F)
+                  : const Color(0xff27A042)
               : widget.wrongAnswers.contains(widget.answers[3])
                   ? Colors.transparent
-                  : Colors.green,
+                  : const Color(0xff27A042),
         ),
       ],
     );

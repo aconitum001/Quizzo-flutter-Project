@@ -40,8 +40,8 @@ class _BooleanResponseWidgetState extends State<BooleanCorrectionWidget> {
           child: ResponseWidgetV2(
             title: "True",
             color: widget.wrongAnswers.contains("True")
-                ? Colors.red
-                : Colors.green,
+                ? const Color(0xffFF0F0F)
+                : const Color(0xff27A042),
           ),
         ),
         GestureDetector(
@@ -61,8 +61,8 @@ class _BooleanResponseWidgetState extends State<BooleanCorrectionWidget> {
           child: ResponseWidgetV2(
             title: "False",
             color: widget.wrongAnswers.contains("False")
-                ? Colors.red
-                : Colors.green,
+                ? const Color(0xffFF0F0F)
+                : const Color(0xff27A042),
           ),
         ),
       ],

@@ -106,10 +106,15 @@ class LeaderBoardPage extends StatelessWidget {
                     Expanded(
                       child: Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 3, vertical: 20),
-                        decoration: BoxDecoration(
+                          horizontal: 3,
+                          vertical: 20,
+                        ),
+                        decoration: const BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(40),
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(40),
+                            topRight: Radius.circular(40),
+                          ),
                         ),
                         child: ListView.builder(
                           itemCount: users.length - 3,
