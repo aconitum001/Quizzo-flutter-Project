@@ -122,8 +122,8 @@ class HomePageWidget extends StatelessWidget {
                         ),
                       );
                     },
-                    icon: Icons.settings_outlined,
-                    title: "Details",
+                    icon: Icons.help_outline,
+                    title: "Game Guide",
                   ),
                   const SizedBox(
                     height: 15,
