@@ -36,7 +36,7 @@ Quizzo is a mobile quiz application developed using Flutter, designed to test yo
 
 ## Video Showcase
 
-[![Quizzo App Showcase](https://img.youtube.com/vi/VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=VIDEO_ID_HERE)
+[![Quizzo App Showcase](https://img.youtube.com/vi/VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=cLX2DUcYmgg)
 
 ## Contributing
 
