@@ -145,7 +145,7 @@ class LeaderBoardPage extends StatelessWidget {
                               ),
                               child: Center(
                                 child: Text(
-                                  "${index + 3}",
+                                  "${index + 4}",
                                   style: const TextStyle(
                                       fontSize: 20,
                                       fontFamily: "Oldenburg",

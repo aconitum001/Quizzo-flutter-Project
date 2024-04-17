@@ -33,14 +33,12 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
   final AudioPlayer player = AudioPlayer();
   final AudioPlayer player2 = AudioPlayer();
   Future<void> playSound2() async {
-    String soundPath =
-        "sounds/456601__bumpelsnake__select10.wav"; //You don't need to include assets/ because AssetSource assume that you have sound in your assets folder.
+    String soundPath = "sounds/456601__bumpelsnake__select10.wav";
     await player2.play(AssetSource(soundPath));
   }
 
   Future<void> playSound() async {
-    String soundPath =
-        "sounds/click-button-app-147358.mp3"; //You don't need to include assets/ because AssetSource assume that you have sound in your assets folder.
+    String soundPath = "sounds/click-button-app-147358.mp3";
     await player.play(AssetSource(soundPath));
   }
 
@@ -71,8 +69,8 @@ class _CatSettingsPageState extends State<CatSettingsPage> {
                     decoration: const BoxDecoration(
                       border: Border(
                         bottom: BorderSide(
-                          color: Colors.white, // Set underline color here
-                          width: 1.0, // Set underline thickness here
+                          color: Colors.white,
+                          width: 1.0,
                         ),
                       ),
                     ),

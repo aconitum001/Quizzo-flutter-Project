@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:quiz_app/pages/cubits/cubit/question_cubit.dart';
 import 'package:quiz_app/pages/cubits/login_cubit/login_cubit.dart';
 import 'package:quiz_app/pages/cubits/signup_cubit/signup_cubit.dart';
 import 'package:quiz_app/pages/home_page.dart';
@@ -34,9 +33,6 @@ class Quiz extends StatelessWidget {
         BlocProvider(
           create: (context) => LoginCubit(),
         ),
-        BlocProvider(
-          create: (context) => QuestionCubit(),
-        )
       ],
       child: MaterialApp(
         theme: ThemeData(
