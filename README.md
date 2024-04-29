@@ -40,7 +40,7 @@ Quizzo is a mobile quiz application developed using Flutter, designed to test yo
 
 ## Supporting the Project
 
-If you find Quizzo interesting and would like to show your support, please consider liking the repository on GitHub [here](https://github.com/your-username/quizzo). Your support keeps me motivated and encourages further development of the project!
+If you find Quizzo interesting and would like to show your support, please consider liking the repository on GitHub. Your support keeps me motivated and encourages further development of the project!
 
 ## Contributing
 
