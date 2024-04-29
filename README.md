@@ -38,8 +38,10 @@ Quizzo is a mobile quiz application developed using Flutter, designed to test yo
 
 [![Quizzo App Showcase](https://img.youtube.com/vi/VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=cLX2DUcYmgg)
 
+## Supporting the Project
+
+If you find Quizzo interesting and would like to show your support, please consider liking the repository on GitHub [here](https://github.com/your-username/quizzo). Your support keeps me motivated and encourages further development of the project!
+
 ## Contributing
 
 Contributions are welcome! If you have any suggestions for new features, bug fixes, or improvements, please open an issue or submit a pull request.
-
-
