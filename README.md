@@ -1,4 +1,5 @@
 # Quizzo
+![Banner](https://github.com/aconitum001/Quizzo-flutter-Project/assets/141423029/60e27455-8480-4335-b053-a55a25ccdb6c)
 
 Quizzo is a mobile quiz application developed using Flutter, designed to test your knowledge in various topics while providing an engaging and enjoyable experience.
 
@@ -36,7 +37,7 @@ Quizzo is a mobile quiz application developed using Flutter, designed to test yo
 
 ## Video Showcase
 
-[![Quizzo App Showcase](https://img.youtube.com/vi/VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=cLX2DUcYmgg)
+[![Quizzo App Showcase](https://github.com/aconitum001/Quizzo-flutter-Project/assets/141423029/7fc4dfb2-a41e-4a4f-8114-4b87cd5ccb15)](https://www.youtube.com/watch?v=cLX2DUcYmgg)
 
 ## Supporting the Project
 
